@@ -1,0 +1,491 @@
+{% extends "base.html" %}
+{% block title %}Sobre mí | Manu Sanroman{% endblock %}
+
+{% block content %}
+
+<!-- HERO FULL WIDTH con fondo rotativo -->
+<section class="about-hero" id="about-hero">
+  <div class="about-bg" id="about-bg" aria-hidden="true"></div>
+  <div class="about-overlay" aria-hidden="true"></div>
+
+  <div class="about-wrap">
+    <div class="about-head">
+      <div class="about-head-left">
+        <h1>Sobre mí</h1>
+
+        <!-- ES -->
+        <p id="lead-es" class="about-lead">
+          Soy Manu Sanroman. Perfil híbrido en fútbol formativo y competitivo: desarrollo técnico, análisis aplicado al rendimiento y soporte operativo en entornos de academia.
+          Integro metodología estructurada, seguimiento competitivo y pensamiento analítico para maximizar el desarrollo del jugador y la eficiencia del entorno deportivo.
+        </p>
+
+        <!-- EN -->
+        <p id="lead-en" class="about-lead" style="display:none;">
+          I’m Manu Sanroman. A hybrid football profile across formative and competitive environments: technical development, applied performance analysis, and operational support within academy settings.
+          I integrate structured methodology, competitive monitoring, and analytical thinking to improve player development and increase program efficiency.
+        </p>
+
+        <div class="buttons" style="margin-top:14px;">
+          <button id="langBtn" class="btn secondary" type="button">EN</button>
+          <a id="cvBtn" class="btn secondary" href="/static/docs/Manu_Sanroman_CV_ES.pdf" target="_blank" rel="noopener">CV (ES)</a>
+          <a class="btn" href="/contacto">Contactar</a>
+        </div>
+
+        <div class="about-meta" style="margin-top:14px;">
+          <span class="pill">Bilingüe (ES/EN)</span>
+          <span class="pill">Estructura formativa</span>
+          <span class="pill">Análisis de rendimiento</span>
+          <span class="pill">Transferencia al partido</span>
+        </div>
+      </div>
+
+      <div class="about-head-right">
+        <div class="about-note">
+          📸 Fotos reales<br><span style="opacity:.8;">(rotan cada 15s)</span>
+        </div>
+
+        <div class="about-quick">
+          <a class="about-chip" href="/metodologia">Metodología</a>
+          <a class="about-chip" href="/partidos">Seguimiento competitivo</a>
+          <a class="about-chip" href="/contacto">Colaborar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CUERPO: SECCIONES COMPACTAS Y PROFESIONALES -->
+<section class="about-body">
+
+  <!-- QUIÉN SOY -->
+  <header class="about-section-head">
+    <h2>Quién soy</h2>
+  </header>
+
+  <!-- ES -->
+  <div id="who-es" class="about-grid">
+    <div class="about-block span-7">
+      <h3>Perfil técnico–analítico</h3>
+      <p>
+        Soy un perfil híbrido orientado a entornos de academia: desarrollo técnico, seguimiento competitivo y soporte operativo.
+        Me interesa diseñar procesos que reduzcan fricción y aumenten la calidad del día a día: claridad metodológica,
+        comunicación efectiva y consistencia en la evaluación.
+      </p>
+      <p style="margin-top:10px;">
+        Trabajo con una mentalidad de estructura: definir estándares, medir progreso y traducir el análisis (video/datos)
+        a decisiones prácticas en cancha y en la planificación semanal.
+      </p>
+    </div>
+
+    <div class="about-block span-5">
+      <h3>Modo de trabajo</h3>
+      <ul class="about-list">
+        <li><strong>Estándares:</strong> criterios claros y repetibles.</li>
+        <li><strong>Progreso:</strong> medición semanal, no impresiones.</li>
+        <li><strong>Comunicación:</strong> feedback accionable y simple.</li>
+        <li><strong>Entorno:</strong> menos fricción, más rendimiento.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- EN -->
+  <div id="who-en" class="about-grid" style="display:none;">
+    <div class="about-block span-7">
+      <h3>Technical–analytical profile</h3>
+      <p>
+        I’m a hybrid profile oriented to academy environments: technical development, competitive monitoring, and operational support.
+        I focus on building processes that reduce friction and improve day-to-day quality through clear methodology,
+        effective communication, and consistent evaluation.
+      </p>
+      <p style="margin-top:10px;">
+        I work with a structure-first mindset: set standards, track progress, and translate analysis (video/data)
+        into practical decisions on the field and within weekly planning.
+      </p>
+    </div>
+
+    <div class="about-block span-5">
+      <h3>How I operate</h3>
+      <ul class="about-list">
+        <li><strong>Standards:</strong> clear, repeatable criteria.</li>
+        <li><strong>Progress:</strong> weekly tracking, not impressions.</li>
+        <li><strong>Communication:</strong> simple, actionable feedback.</li>
+        <li><strong>Environment:</strong> less friction, better performance.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- FORMACIÓN -->
+  <header class="about-section-head">
+    <h2 id="edu-title-es">Formación y enfoque</h2>
+    <h2 id="edu-title-en" style="display:none;">Education & focus</h2>
+  </header>
+
+  <div class="about-grid">
+    <!-- ES -->
+    <div id="edu-es" class="about-block span-7">
+      <h3>Formación académica</h3>
+      <p class="muted">
+        Máster en <strong>Sport Big Data</strong> – Universidad Europea (Real Madrid Graduate School).
+      </p>
+      <p class="muted" style="margin-top:6px;">
+        Licenciatura en <strong>Sports Business Administration</strong> – Stephen F. Austin State University.
+      </p>
+      <p class="muted" style="margin-top:12px;">
+        Esta base académica me permite integrar análisis cuantitativo, estructura organizativa
+        y visión estratégica al desarrollo técnico dentro de entornos formativos.
+      </p>
+    </div>
+
+    <!-- EN -->
+    <div id="edu-en" class="about-block span-7" style="display:none;">
+      <h3>Academic background</h3>
+      <p class="muted">
+        Master in <strong>Sport Big Data</strong> – Universidad Europea (Real Madrid Graduate School).
+      </p>
+      <p class="muted" style="margin-top:6px;">
+        B.S. in <strong>Sports Business Administration</strong> – Stephen F. Austin State University.
+      </p>
+      <p class="muted" style="margin-top:12px;">
+        This academic foundation allows me to integrate quantitative analysis,
+        organizational structure, and strategic thinking into technical development
+        within academy environments.
+      </p>
+    </div>
+
+    <div class="about-block span-5">
+      <h3 id="focus-es">Enfoque</h3>
+      <h3 id="focus-en" style="display:none;">Focus</h3>
+      <ul class="about-list">
+        <li><strong>Metodología:</strong> progresiones + criterios.</li>
+        <li><strong>Seguimiento:</strong> video/eventos → feedback.</li>
+        <li><strong>Operación:</strong> claridad y consistencia.</li>
+        <li><strong>Transferencia:</strong> impacto en partido.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- QUÉ HAGO -->
+  <header class="about-section-head">
+    <h2 id="do-title-es">Qué hago</h2>
+    <h2 id="do-title-en" style="display:none;">What I do</h2>
+  </header>
+
+  <div class="about-grid">
+    <div id="do-es" class="about-block span-6">
+      <h3>En la práctica</h3>
+      <ul class="about-list">
+        <li><strong>Desarrollo técnico:</strong> progresiones, correcciones clave y transferencia.</li>
+        <li><strong>Seguimiento competitivo:</strong> video + eventos + tendencias.</li>
+        <li><strong>Medición:</strong> criterios simples para evaluar progreso.</li>
+        <li><strong>Apoyo a staff:</strong> organización, comunicación y claridad.</li>
+      </ul>
+    </div>
+
+    <div id="do-en" class="about-block span-6" style="display:none;">
+      <h3>In practice</h3>
+      <ul class="about-list">
+        <li><strong>Technical development:</strong> progressions, key corrections, and transfer.</li>
+        <li><strong>Competitive monitoring:</strong> video + events + trends.</li>
+        <li><strong>Measurement:</strong> simple criteria to track progress.</li>
+        <li><strong>Staff support:</strong> organization, communication, clarity.</li>
+      </ul>
+    </div>
+
+    <div id="support-es" class="about-block span-6">
+      <h3>Soporte y estructura</h3>
+      <p class="muted">
+        Me adapto a lo que el entorno necesita: orden, comunicación y seguimiento.
+        Cuando los procesos están claros (planeación, logística, roles, feedback), el jugador y el staff pueden enfocarse en rendir.
+      </p>
+    </div>
+
+    <div id="support-en" class="about-block span-6" style="display:none;">
+      <h3>Support & structure</h3>
+      <p class="muted">
+        I adapt to what the environment needs: organization, communication, and follow-through.
+        When processes are clear (planning, logistics, roles, feedback), players and staff can focus on performance.
+      </p>
+    </div>
+  </div>
+
+  <!-- DIFERENCIAL -->
+  <header class="about-section-head">
+    <h2 id="diff-title-es">Por qué soy diferente</h2>
+    <h2 id="diff-title-en" style="display:none;">What differentiates me</h2>
+  </header>
+
+  <div class="about-grid">
+    <div id="diff-es" class="about-block span-12">
+      <h3>Lo que me define</h3>
+      <ol class="about-list">
+        <li><strong>Estructura:</strong> estándares claros y progresiones que se sostienen en el tiempo.</li>
+        <li><strong>Transferencia:</strong> el objetivo es rendimiento en partido, no solo “buen entrenamiento”.</li>
+        <li><strong>Análisis aplicable:</strong> video/datos traducidos a decisiones prácticas y medibles.</li>
+      </ol>
+    </div>
+
+    <div id="diff-en" class="about-block span-12" style="display:none;">
+      <h3>What defines my approach</h3>
+      <ol class="about-list">
+        <li><strong>Structure:</strong> clear standards and progressions that hold over time.</li>
+        <li><strong>Transfer:</strong> match-day performance over “good-looking training”.</li>
+        <li><strong>Applied analysis:</strong> video/data translated into practical, measurable decisions.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="about-cta">
+    <div class="about-cta-left">
+      <h3 id="cta-es">Si quieres entrenar o colaborar</h3>
+      <h3 id="cta-en" style="display:none;">If you want to train or collaborate</h3>
+
+      <p id="ctatxt-es" class="muted">
+        Estoy abierto a entrenamiento individual, apoyo a equipos/academias o colaboraciones. Escríbeme y lo platicamos.
+      </p>
+      <p id="ctatxt-en" style="display:none;" class="muted">
+        I’m open to 1-on-1 training, academy/team support, or collaborations. Message me and let’s talk.
+      </p>
+    </div>
+
+    <div class="about-cta-right">
+      <div class="buttons">
+        <a class="btn" href="/contacto">Contactar</a>
+        <a class="btn secondary" href="/metodologia">Ver metodología</a>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- JS: idioma + fondo rotativo -->
+<script>
+(function(){
+  const btn = document.getElementById("langBtn");
+  const cvBtn = document.getElementById("cvBtn");
+
+  const ES = ["lead-es","who-es","edu-es","do-es","support-es","diff-es","cta-es","ctatxt-es","edu-title-es","do-title-es","diff-title-es","focus-es"];
+  const EN = ["lead-en","who-en","edu-en","do-en","support-en","diff-en","cta-en","ctatxt-en","edu-title-en","do-title-en","diff-title-en","focus-en"];
+
+  function setLang(lang){
+    const showES = (lang === "es");
+    ES.forEach(id => { const el = document.getElementById(id); if(el) el.style.display = showES ? "" : "none"; });
+    EN.forEach(id => { const el = document.getElementById(id); if(el) el.style.display = showES ? "none" : ""; });
+    btn.textContent = showES ? "EN" : "ES";
+    localStorage.setItem("lang_about", lang);
+
+    if (cvBtn){
+      cvBtn.href = showES ? "/static/docs/Manu_Sanroman_CV_ES.pdf" : "/static/docs/Manu_Sanroman_CV_EN.pdf";
+      cvBtn.textContent = showES ? "CV (ES)" : "CV (EN)";
+    }
+  }
+
+  const saved = localStorage.getItem("lang_about");
+  setLang(saved === "en" ? "en" : "es");
+
+  btn.addEventListener("click", function(){
+    const current = localStorage.getItem("lang_about") === "en" ? "en" : "es";
+    setLang(current === "es" ? "en" : "es");
+  });
+
+  // fondo rotativo
+  const bg = document.getElementById("about-bg");
+  const imgs = ["/static/FOTOS/1.jpeg","/static/FOTOS/2.jpeg","/static/FOTOS/3.jpeg","/static/FOTOS/4.jpeg","/static/FOTOS/5.jpeg"];
+
+  let i = 0;
+  function setBg(url){
+    bg.style.opacity = 0;
+    setTimeout(() => {
+      bg.style.backgroundImage = `url('${url}')`;
+      bg.style.opacity = 1;
+    }, 350);
+  }
+  setBg(imgs[0]);
+
+  setInterval(() => {
+    i = (i + 1) % imgs.length;
+    setBg(imgs[i]);
+  }, 15000);
+})();
+</script>
+
+<style>
+/* HERO full-width */
+.about-hero{
+  position: relative;
+  overflow: hidden;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  min-height: 320px;
+}
+
+.about-bg{
+  position:absolute;
+  inset:0;
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.03);
+  transition: opacity .4s ease;
+  opacity: 1;
+  filter: saturate(1.05);
+}
+
+.about-overlay{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.58), rgba(0,0,0,.52)),
+    radial-gradient(900px 500px at 20% 0%, rgba(124,58,237,.26), transparent 60%),
+    radial-gradient(900px 600px at 90% 20%, rgba(34,197,94,.14), transparent 60%);
+  backdrop-filter: blur(2px);
+}
+
+.about-wrap{
+  position: relative;
+  z-index: 2;
+  width: min(1700px, 95vw);
+  margin: 0 auto;
+  padding: 22px 24px;
+}
+
+.about-head{
+  display: grid;
+  grid-template-columns: 1.3fr .7fr;
+  gap: 18px;
+  align-items: start;
+}
+
+.about-head-right{
+  display:flex;
+  flex-direction:column;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+.about-note{
+  display:inline-block;
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.05);
+  color: rgba(255,255,255,.90);
+  text-align:center;
+}
+
+.about-quick{
+  display:flex;
+  gap:10px;
+  flex-wrap: wrap;
+  justify-content:flex-end;
+}
+
+.about-chip{
+  display:inline-block;
+  padding: 10px 12px;
+  border-radius: 999px;
+  text-decoration:none;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.04);
+  color: rgba(255,255,255,.90);
+  transition: transform .15s ease, background .15s ease, border-color .15s ease;
+}
+.about-chip:hover{
+  transform: translateY(-1px);
+  border-color: rgba(241,215,154,.38);
+  background: rgba(255,255,255,.06);
+}
+
+.about-lead{
+  font-size: 16px;
+  line-height: 1.65;
+  color: rgba(243,243,243,.92);
+  max-width: 88ch;
+}
+
+.about-meta{
+  display:flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* BODY */
+.about-body{
+  width: min(1700px, 95vw);
+  margin: 0 auto;
+  padding: 18px 0 26px;
+}
+
+.about-section-head{
+  margin-top: 18px;
+  margin-bottom: 10px;
+  display:flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.about-section-head h2{
+  font-size: 18px;
+  margin: 0;
+  letter-spacing: .2px;
+}
+
+/* Grid 12 cols */
+.about-grid{
+  display:grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 14px;
+}
+
+.about-block{
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.03);
+  border-radius: 18px;
+  padding: 14px 14px;
+}
+
+.about-block h3{
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.about-list{
+  margin: 8px 0 0;
+  padding-left: 18px;
+  color: var(--muted);
+}
+.about-list li{ margin: 8px 0; }
+
+.muted{ color: var(--muted); }
+
+/* spans */
+.span-12{ grid-column: span 12; }
+.span-7{ grid-column: span 7; }
+.span-6{ grid-column: span 6; }
+.span-5{ grid-column: span 5; }
+
+/* CTA */
+.about-cta{
+  margin-top: 16px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.03);
+  border-radius: 18px;
+  padding: 14px 14px;
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* Responsive */
+@media (max-width: 980px){
+  .about-head{ grid-template-columns: 1fr; }
+  .about-head-right{ align-items:flex-start; }
+  .about-quick{ justify-content:flex-start; }
+
+  .span-7, .span-6, .span-5{ grid-column: span 12; }
+  .about-hero{ min-height: 360px; }
+}
+</style>
+
+{% endblock %}

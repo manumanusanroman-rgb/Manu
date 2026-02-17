@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}REM 2015 | Manu Sanroman{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <h1>REM 2015</h1>
+  <p>
+    Partidos y acciones destacadas de Rayados en la Mira 2015.
+    Selecciona el equipo para ver sus partidos.
+  </p>
+</section>
+
+<div class="section-title">Equipos</div>
+
+<section class="cards">
+  <article class="card">
+    <h3>Equipo Azul</h3>
+    <p style="color: var(--muted);">Lista de partidos, resultados, goles, asistencias y MVP.</p>
+    <div class="buttons" style="margin-top:12px">
+      <a class="btn secondary" href="/partidos?equipo=azul">Ver partidos</a>
+    </div>
+  </article>
+
+  <article class="card">
+    <h3>Equipo Blanco</h3>
+    <p style="color: var(--muted);">Lista de partidos, resultados, goles, asistencias y MVP.</p>
+    <div class="buttons" style="margin-top:12px">
+      <a class="btn secondary" href="/partidos?equipo=blanco">Ver partidos</a>
+    </div>
+  </article>
+</section>
+{% endblock %}

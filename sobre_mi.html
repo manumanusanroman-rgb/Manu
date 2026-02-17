@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+{% block title %}Sobre mí | Manu Sanroman{% endblock %}
+
+{% block content %}
+<section class="hero reveal">
+  <div class="spread">
+    <div>
+      <h1>Sobre mí</h1>
+      <p id="about-lead-es">
+        Soy entrenador enfocado en el desarrollo individual: técnica, toma de decisiones y transferencia al juego real.
+        He trabajado en fútbol formativo de alto rendimiento y también con jugadores 1 a 1.
+      </p>
+
+      <p id="about-lead-en" style="display:none;">
+        I’m a coach focused on individual development: technique, decision-making, and transfer to the real game.
+        I’ve worked in elite youth environments and also 1-on-1 with players.
+      </p>
+
+      <div class="buttons" style="margin-top:12px;">
+        <button id="langBtn" class="btn secondary" type="button">EN</button>
+        <a class="btn" href="/contacto">Contactar</a>
+      </div>
+
+      <div class="meta">
+        <span class="pill">Individual Development</span>
+        <span class="pill">Skill Challenges</span>
+        <span class="pill">Video & Analysis</span>
+        <span class="pill">Bilingüe</span>
+      </div>
+    </div>
+
+    <div class="about-photos">
+      <!-- OPCIONAL: si después subes fotos, ponlas en /static/img/ y cambia los nombres -->
+      <img class="about-img" src="/static/img/manu-1.jpg" alt="Manu Sanroman" onerror="this.style.display='none'">
+      <img class="about-img" src="/static/img/manu-2.jpg" alt="Entrenamiento" onerror="this.style.display='none'">
+      <img class="about-img" src="/static/img/manu-3.jpg" alt="Partido / sesión" onerror="this.style.display='none'">
+    </div>
+  </div>
+</section>
+
+<div class="section-title">Mi historia</div>
+
+<section class="cards">
+  <!-- ESP -->
+  <article id="bio-es" class="card">
+    <h3>Entrenador de formación + desarrollo individual</h3>
+    <p>
+      Actualmente entreno en fuerzas básicas de Rayados de Monterrey (U-10), trabajando con jugadores en un entorno
+      de alto rendimiento y metodología estructurada. También diseñé e implementé el programa “Skill Challenges”
+      para impulsar el dominio técnico y la toma de decisiones. 
+    </p>
+    <p style="margin-top:10px;">
+      Antes de eso, fui entrenador en distintos contextos competitivos y culturales (2021–2023), y durante varios años
+      trabajé como entrenador privado en The Woodlands, TX, creando planes personalizados y usando análisis en video
+      para acelerar el aprendizaje. 
+    </p>
+    <p style="margin-top:10px; color:var(--muted2);">
+      Formación: Sport Big Data (Universidad Europea – Real Madrid Graduate School, 2026) + Bachelor en Sports Business
+      (Stephen F. Austin State University, 2023). Bilingüe: español e inglés.
+    </p>
+  </article>
+
+  <!-- EN -->
+  <article id="bio-en" class="card" style="display:none;">
+    <h3>Youth coaching + individual player development</h3>
+    <p>
+      I currently coach at Rayados de Monterrey’s academy (U-10), developing players in an elite environment with a
+      structured methodology. I also designed and implemented the “Skill Challenges” program to strengthen technical
+      mastery and decision-making.
+    </p>
+    <p style="margin-top:10px;">
+      Previously, I coached teams across different age groups and competitive contexts (2021–2023). For several years
+      I worked as a private coach in The Woodlands, TX, building individualized training plans and using video-based
+      methods to accelerate learning and performance.
+    </p>
+    <p style="margin-top:10px; color:var(--muted2);">
+      Education: Sport Big Data (Universidad Europea – Real Madrid Graduate School, expected 2026) + B.S. in Sports
+      Business Administration (Stephen F. Austin State University, 2023). Bilingual: Spanish and English.
+    </p>
+  </article>
+</section>
+
+<div class="section-title">Lo que ofrezco</div>
+
+<section class="cards">
+  <article class="card">
+    <h3 id="serv-title-es">Entrenamiento individual</h3>
+    <h3 id="serv-title-en" style="display:none;">1-on-1 training</h3>
+
+    <p id="serv-es">
+      Sesiones centradas en técnica aplicable al juego: primer toque, conducción, golpeo, perfil corporal y
+      toma de decisiones con progresiones medibles.
+    </p>
+    <p id="serv-en" style="display:none;">
+      Sessions focused on game-ready technique: first touch, dribbling, striking, body orientation, and decision-making
+      through measurable progressions.
+    </p>
+  </article>
+
+  <article class="card">
+    <h3 id="met-title-es">Metodología moderna</h3>
+    <h3 id="met-title-en" style="display:none;">Modern methodology</h3>
+
+    <p id="met-es">
+      Diseño de tareas con intención: dificultad adecuada, repetición consciente y escenarios reales que transfieren al partido.
+    </p>
+    <p id="met-en" style="display:none;">
+      Intentional task design: optimal challenge, deliberate repetition, and realistic scenarios that transfer to match day.
+    </p>
+  </article>
+
+  <article class="card">
+    <h3 id="vid-title-es">Video + análisis</h3>
+    <h3 id="vid-title-en" style="display:none;">Video + analysis</h3>
+
+    <p id="vid-es">
+      Clips cortos con puntos claros: qué ver, por qué importa y cómo entrenarlo. Ideal para acelerar correcciones.
+    </p>
+    <p id="vid-en" style="display:none;">
+      Short clips with clear cues: what to look at, why it matters, and how to train it. Great for faster corrections.
+    </p>
+  </article>
+</section>
+
+<script>
+(function(){
+  const btn = document.getElementById("langBtn");
+
+  const ES = ["about-lead-es","bio-es","serv-title-es","serv-es","met-title-es","met-es","vid-title-es","vid-es"];
+  const EN = ["about-lead-en","bio-en","serv-title-en","serv-en","met-title-en","met-en","vid-title-en","vid-en"];
+
+  function setLang(lang){
+    const showES = (lang === "es");
+    for (const id of ES){
+      const el = document.getElementById(id);
+      if (el) el.style.display = showES ? "" : "none";
+    }
+    for (const id of EN){
+      const el = document.getElementById(id);
+      if (el) el.style.display = showES ? "none" : "";
+    }
+    btn.textContent = showES ? "EN" : "ES";
+    localStorage.setItem("lang_about", lang);
+  }
+
+  const saved = localStorage.getItem("lang_about");
+  setLang(saved === "en" ? "en" : "es");
+
+  btn.addEventListener("click", function(){
+    const current = localStorage.getItem("lang_about") === "en" ? "en" : "es";
+    setLang(current === "es" ? "en" : "es");
+  });
+})();
+</script>
+{% endblock %}

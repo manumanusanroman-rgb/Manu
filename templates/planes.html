@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% block title %}Planes | Manu Sanroman{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <h1>Planes de Entrenamiento Personal</h1>
+  <p>
+    Programas diseñados para mejorar tu perfil técnico con progresión, enfoque y transferencia al juego real.
+    Elige el plan que mejor se adapte a tu etapa y a tus objetivos.
+  </p>
+
+  <div class="meta">
+    <span class="pill">Técnica</span>
+    <span class="pill">Repetición consciente</span>
+    <span class="pill">Decisión</span>
+    <span class="pill">Progresión</span>
+  </div>
+</section>
+
+<div class="section-title">Elige tu plan</div>
+
+<section class="plan-grid">
+  <!-- BRONCE -->
+  <article class="plan card">
+    <div class="plan-head">
+      <h3>Entrenamiento Personalizado Bronce</h3>
+      <span class="pill">Base técnica</span>
+    </div>
+
+    <p class="plan-desc">
+      Ideal para iniciar o reforzar fundamentos: coordinación, control, primer toque y relación con el balón.
+    </p>
+
+    <ul class="plan-list">
+      <li>Evaluación inicial (nivel y objetivos)</li>
+      <li>Plan de progresión por bloques</li>
+      <li>Retos técnicos para casa</li>
+      <li>Seguimiento simple de hábitos</li>
+    </ul>
+
+    <div class="plan-cta">
+      <a class="btn secondary" href="/contact">Solicitar información</a>
+    </div>
+
+    <p class="plan-note">*Precio por definir.</p>
+  </article>
+
+  <!-- PLATA (destacado) -->
+  <article class="plan card featured">
+    <div class="plan-head">
+      <h3>Entrenamiento Personalizado Plata</h3>
+      <span class="pill">Desarrollo completo</span>
+    </div>
+
+    <p class="plan-desc">
+      Para jugadores que quieren acelerar el desarrollo: técnica + decisión, con tareas y progresión más específica.
+    </p>
+
+    <ul class="plan-list">
+      <li>Evaluación + objetivos medibles</li>
+      <li>Progresión semanal (sesiones y retos)</li>
+      <li>Correcciones y cues individuales</li>
+      <li>Guía para transferencia al juego</li>
+    </ul>
+
+    <div class="plan-cta">
+      <a class="btn" href="/contact">Quiero este plan</a>
+    </div>
+
+    <p class="plan-note">*Precio por definir.</p>
+  </article>
+
+  <!-- ORO -->
+  <article class="plan card">
+    <div class="plan-head">
+      <h3>Entrenamiento Personalizado Oro</h3>
+      <span class="pill">Alto rendimiento</span>
+    </div>
+
+    <p class="plan-desc">
+      Enfoque premium: microdetalles técnicos, toma de decisiones bajo presión, y plan totalmente personalizado.
+    </p>
+
+    <ul class="plan-list">
+      <li>Plan individual por perfil y posición</li>
+      <li>Retos avanzados y escenarios específicos</li>
+      <li>Feedback continuo y ajustes rápidos</li>
+      <li>Opcional: análisis de video (si aplica)</li>
+    </ul>
+
+    <div class="plan-cta">
+      <a class="btn secondary" href="/contact">Agendar llamada</a>
+    </div>
+
+    <p class="plan-note">*Precio por definir.</p>
+  </article>
+</section>
+
+<div class="section-title">¿No sabes cuál elegir?</div>
+
+<section class="cards">
+  <article class="card">
+    <h3>Te recomiendo el plan ideal</h3>
+    <p>
+      Escríbeme por contacto con la edad, posición y objetivo principal.
+      Te digo qué plan encaja mejor y cómo empezar.
+    </p>
+    <div class="buttons" style="margin-top:12px">
+      <a class="btn secondary" href="/contact">Contactar</a>
+    </div>
+  </article>
+</section>
+{% endblock %}

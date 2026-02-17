@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="/static/styles.css" />
+  <title>{% block title %}Coach Manuel{% endblock %}</title>
+
+  <style>
+    .nav-inner{
+      width: min(1100px, calc(100% - 48px));
+      margin: 0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 14px;
+      padding: 14px 0;
+    }
+
+    .brand{
+      font-weight: 950;
+      letter-spacing: .2px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      white-space: nowrap;
+    }
+    .brand .tag{
+      font-size:12px;
+      color: rgba(246,246,246,.70);
+      border: 1px solid rgba(255,255,255,.10);
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.03);
+    }
+
+    .nav-right{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content:flex-end;
+    }
+
+    .nav nav{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+
+    @media (max-width: 720px){
+      .nav-inner{ flex-direction: column; align-items:flex-start; gap: 10px; }
+      .nav-right{ width:100%; justify-content:space-between; }
+      .nav nav{ width:100%; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="/">
+        Manu Sanroman
+        <span class="tag">Web Coach</span>
+      </a>
+
+      <div class="nav-right">
+        <nav>
+          <a class="{% if request.url.path == '/' %}active{% endif %}" href="/">Inicio</a>
+          <a class="{% if request.url.path.startswith('/sobre-mi') %}active{% endif %}" href="/sobre-mi">Sobre mí</a>
+          <a class="{% if request.url.path.startswith('/metodologia') %}active{% endif %}" href="/metodologia">Metodología</a>
+          <a class="{% if request.url.path.startswith('/partidos') %}active{% endif %}" href="/partidos">Partidos</a>
+          <a class="{% if request.url.path.startswith('/contacto') %}active{% endif %}" href="/contacto">Contacto</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer">© 2026 · Manu Sanroman</footer>
+</body>
+</html>

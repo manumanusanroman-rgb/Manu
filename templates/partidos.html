@@ -1,0 +1,237 @@
+{% extends "base.html" %}
+{% block title %}Partidos{% endblock %}
+
+{% block content %}
+<section class="hero reveal">
+  <h1>Partidos</h1>
+  <p>Consulta partidos jugados y próximos, con estadísticas acumuladas.</p>
+</section>
+
+<div class="section-title">Filtros</div>
+
+<section class="cards">
+  <article class="card">
+    <input id="q" class="input" placeholder="Buscar rival, sede, liga..." />
+  </article>
+
+  <article class="card">
+    <select id="color" class="select">
+      <option value="">Equipo</option>
+      {% for c in colores %}
+        <option value="{{ c }}">{{ c }}</option>
+      {% endfor %}
+    </select>
+  </article>
+
+  <article class="card">
+    <select id="res" class="select">
+      <option value="">Resultado</option>
+      <option value="Victoria">Victoria</option>
+      <option value="Empate">Empate</option>
+      <option value="Derrota">Derrota</option>
+    </select>
+  </article>
+
+  <article class="card">
+    <select id="liga" class="select">
+      <option value="">Liga</option>
+      {% for l in ligas %}
+        <option value="{{ l }}">{{ l }}</option>
+      {% endfor %}
+    </select>
+  </article>
+
+  <article class="card">
+    <select id="sede" class="select">
+      <option value="">Sede</option>
+      {% for s in sedes %}
+        <option value="{{ s }}">{{ s }}</option>
+      {% endfor %}
+    </select>
+  </article>
+</section>
+
+<div class="section-title">Partidos</div>
+
+<section id="lista" class="cards">
+  {% for p in partidos %}
+    {% set marcador_txt = (p.marcador or '')|trim %}
+    {% set is_upcoming = (marcador_txt == '') %}
+
+    <article class="card partido {% if is_upcoming %}next-match{% endif %}"
+      data-color="{{ p.equipo_color }}"
+      data-res="{{ p.resultado }}"
+      data-liga="{{ p.liga }}"
+      data-sede="{{ p.sede }}"
+      data-text="{{ (p.equipo ~ ' ' ~ p.rival ~ ' ' ~ p.fecha ~ ' ' ~ p.sede ~ ' ' ~ p.liga ~ ' ' ~ (p.marcador or '') ~ ' ' ~ (p.equipo_color or '') ~ ' ' ~ (p.resultado or '') ) | lower }}">
+
+      <h3>{{ p.equipo }} vs {{ p.rival }}</h3>
+
+      <div class="meta">
+        <span class="pill">{{ p.liga }}</span>
+
+        {% if is_upcoming %}
+          <span class="badge-upcoming">⏳ Próximo</span>
+        {% else %}
+          <span class="pill">{{ p.marcador }}</span>
+        {% endif %}
+
+        {% if p.resultado == "Victoria" %}
+          <span class="chip win">Victoria</span>
+        {% elif p.resultado == "Empate" %}
+          <span class="chip draw">Empate</span>
+        {% elif p.resultado == "Derrota" %}
+          <span class="chip loss">Derrota</span>
+        {% endif %}
+
+        {% if p.mvp %}
+          <span class="pill">🏅 MVP: {{ p.mvp }}</span>
+        {% endif %}
+      </div>
+
+      <p style="margin-top:8px; color:var(--muted);">
+        <strong>Fecha:</strong> {{ p.fecha }}<br>
+        <strong>Sede:</strong> {{ p.sede }}
+      </p>
+
+      <div class="buttons">
+        <a class="btn secondary" href="/partidos/{{ p.id }}">Ver detalle</a>
+      </div>
+    </article>
+  {% endfor %}
+</section>
+
+<p id="vacio" style="display:none; color:var(--muted); margin-top:12px;">
+  No hay partidos con esos filtros.
+</p>
+
+<details class="accordion" style="margin-top:22px;">
+  <summary>Estadísticas acumuladas</summary>
+
+  <div class="acc-body">
+    <section class="match-grid" style="margin-top:12px;">
+
+      <!-- PORTEROS -->
+      <article class="card">
+        <div class="section-title">Porteros · Goles recibidos</div>
+
+        {% if porteros_tabla %}
+          <table class="events">
+            <thead>
+              <tr>
+                <th>Portero</th>
+                <th>Goles recibidos</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for r in porteros_tabla %}
+                <tr>
+                  <td>{{ r.portero }}</td>
+                  <td>{{ r.goles_recibidos }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        {% else %}
+          <p style="color:var(--muted);">Sin datos.</p>
+        {% endif %}
+      </article>
+
+      <!-- LEADERBOARD -->
+      <article class="card">
+        <div class="section-title">Leaderboard · Jugadores</div>
+
+        {% if leaderboard %}
+          <table class="events">
+            <thead>
+              <tr>
+                <th>Jugador</th>
+
+                <th>
+                  <a href="/partidos?sort=goles" style="text-decoration:none;">
+                    Goles {% if sort == "goles" %}▼{% endif %}
+                  </a>
+                </th>
+
+                <th>
+                  <a href="/partidos?sort=asistencias" style="text-decoration:none;">
+                    Asistencias {% if sort == "asistencias" %}▼{% endif %}
+                  </a>
+                </th>
+
+                <th>
+                  <a href="/partidos?sort=mvps" style="text-decoration:none;">
+                    MVPs {% if sort == "mvps" %}▼{% endif %}
+                  </a>
+                </th>
+
+                <th>
+                  <a href="/partidos?sort=total" style="text-decoration:none;">
+                    Total {% if sort == "total" %}▼{% endif %}
+                  </a>
+                </th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {% for r in leaderboard %}
+                <tr>
+                  <td>{{ r.jugador }}</td>
+                  <td>{{ r.goles }}</td>
+                  <td>{{ r.asistencias }}</td>
+                  <td>{{ r.mvps }}</td>
+                  <td><strong>{{ "%.1f"|format(r.total) }}</strong></td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        {% else %}
+          <p style="color:var(--muted);">Sin datos.</p>
+        {% endif %}
+      </article>
+
+    </section>
+  </div>
+</details>
+
+<script>
+(function(){
+  const q = document.getElementById("q");
+  const color = document.getElementById("color");
+  const res = document.getElementById("res");
+  const liga = document.getElementById("liga");
+  const sede = document.getElementById("sede");
+
+  const cards = Array.from(document.querySelectorAll(".partido"));
+  const vacio = document.getElementById("vacio");
+
+  function filtrar(){
+    const query = (q.value || "").trim().toLowerCase();
+    const colorVal = color.value || "";
+    const resVal = res.value || "";
+    const ligaVal = liga.value || "";
+    const sedeVal = sede.value || "";
+
+    let shown = 0;
+    for (const c of cards){
+      const okColor = !colorVal || c.dataset.color === colorVal;
+      const okRes   = !resVal   || c.dataset.res === resVal;
+      const okLiga  = !ligaVal  || c.dataset.liga === ligaVal;
+      const okSede  = !sedeVal  || c.dataset.sede === sedeVal;
+      const okTxt   = !query    || (c.dataset.text || "").includes(query);
+
+      const ok = okColor && okRes && okLiga && okSede && okTxt;
+      c.style.display = ok ? "" : "none";
+      if (ok) shown++;
+    }
+    vacio.style.display = shown ? "none" : "";
+  }
+
+  // ✅ texto = input, selects = change
+  q.addEventListener("input", filtrar);
+  [color, res, liga, sede].forEach(el => el.addEventListener("change", filtrar));
+
+  filtrar();
+})();
+</script>
+{% endblock %}

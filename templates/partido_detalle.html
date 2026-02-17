@@ -1,0 +1,168 @@
+{% extends "base.html" %}
+{% block title %}Detalles | {{ p.equipo }} vs {{ p.rival }}{% endblock %}
+
+{% block content %}
+<section class="hero reveal">
+<p style="color:yellow; font-weight:900;"></p>
+  <h1>{{ p.equipo }} vs {{ p.rival }}</h1>
+
+  <p>
+    <strong>Marcador:</strong> {{ p.marcador }} ·
+    <strong>Liga:</strong> {{ p.liga }} ·
+    <strong>Jornada:</strong> {{ p.jornada }}
+  </p>
+
+  <p style="color: var(--muted); margin-top:8px;">
+    <strong>Fecha:</strong> {{ p.fecha }} ·
+    <strong>Sede:</strong> {{ p.sede }}
+  </p>
+
+  <div class="meta" style="margin-top:10px;">
+    {% if p.resultado == "Victoria" %}
+      <span class="chip win">Victoria</span>
+    {% elif p.resultado == "Empate" %}
+      <span class="chip draw">Empate</span>
+    {% elif p.resultado == "Derrota" %}
+      <span class="chip loss">Derrota</span>
+    {% endif %}
+
+    {% if p.mvp %}
+      <span class="pill">🏅 MVP: {{ p.mvp }}</span>
+    {% endif %}
+
+    <span class="pill">ID: {{ p.id }}</span>
+  </div>
+
+  <div class="buttons" style="margin-top:12px;">
+    <a class="btn secondary" href="/partidos">← Volver a Partidos</a>
+    {% if p.video_url %}
+      <a class="btn" target="_blank" href="{{ p.video_url }}">Ver video (abrir)</a>
+    {% endif %}
+  </div>
+</section>
+
+<div class="section-title">Detalles del partido</div>
+
+<section class="match-grid">
+  <!-- COLUMNA 1: ALINEACIÓN -->
+  <article class="card">
+    <div class="section-title">Alineación</div>
+
+    <div class="pill">Titulares ({{ p.titulares|length if p.titulares else 0 }})</div>
+    <ol class="lineup">
+      {% if p.titulares %}
+        {% for j in p.titulares %}
+          <li>{{ j }}</li>
+        {% endfor %}
+      {% else %}
+        <li style="color: var(--muted);">Sin titulares cargados.</li>
+      {% endif %}
+    </ol>
+
+    <div style="height:10px"></div>
+
+    <div class="pill">Suplentes ({{ p.suplentes|length if p.suplentes else 0 }})</div>
+    <ul class="lineup">
+      {% if p.suplentes %}
+        {% for s in p.suplentes %}
+          <li>{{ s }}</li>
+        {% endfor %}
+      {% else %}
+        <li style="color: var(--muted);">Sin suplentes cargados.</li>
+      {% endif %}
+    </ul>
+  </article>
+
+  <!-- COLUMNA 2: VIDEO + NOTAS + RESUMEN -->
+  <article class="card">
+    <div class="section-title">Video del partido</div>
+
+    {% if p.video_url %}
+      <div class="video">
+        <iframe
+          src="https://www.facebook.com/plugins/video.php?href={{ p.video_url | urlencode }}&show_text=0"
+          style="border:none;overflow:hidden"
+          scrolling="no"
+          frameborder="0"
+          allowfullscreen="true"
+          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+        </iframe>
+      </div>
+    {% else %}
+      <p style="color: var(--muted); margin: 0;">No hay video cargado para este partido.</p>
+    {% endif %}
+
+    {% if p.notas %}
+      <p style="margin-top:10px; color: var(--muted);">
+        <strong>Notas:</strong> {{ p.notas }}
+      </p>
+    {% endif %}
+
+    <div style="height:14px"></div>
+    <div class="section-title">Resumen</div>
+
+    <div class="meta">
+      <span class="pill">Marcador: {{ p.marcador }}</span>
+      <span class="pill">Liga: {{ p.liga }}</span>
+      <span class="pill">Jornada: {{ p.jornada }}</span>
+      {% if p.equipo_color %}
+        <span class="pill">Equipo: {{ p.equipo_color }}</span>
+      {% endif %}
+    </div>
+
+    <div style="height:12px"></div>
+
+    <div class="section-title">Goles (partido)</div>
+    {% if goles_top and goles_top|length > 0 %}
+      <div class="meta">
+        {% for nombre, n in goles_top %}
+          <span class="pill">⚽ {{ nombre }} ({{ n }})</span>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p style="color: var(--muted); margin: 8px 0 0;">Sin goles registrados.</p>
+    {% endif %}
+
+    <div style="height:12px"></div>
+
+    <div class="section-title">Asistencias (partido)</div>
+    {% if asist_top and asist_top|length > 0 %}
+      <div class="meta">
+        {% for nombre, n in asist_top %}
+          <span class="pill">🅰️ {{ nombre }} ({{ n }})</span>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p style="color: var(--muted); margin: 8px 0 0;">Sin asistencias registradas.</p>
+    {% endif %}
+  </article>
+
+  <!-- COLUMNA 3: EVENTOS -->
+  <article class="card">
+    <div class="section-title">Eventos</div>
+
+    {% if p.eventos and p.eventos|length > 0 %}
+      <table class="events">
+        <thead>
+          <tr>
+            <th>Min</th>
+            <th>Gol</th>
+            <th>Asistencia</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for e in p.eventos %}
+            <tr>
+              <td>{{ e.minuto }}'</td>
+              <td>{{ e.gol }}</td>
+              <td>{{ e.asistencia }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p style="color: var(--muted); margin: 0;">Sin eventos registrados.</p>
+    {% endif %}
+  </article>
+</section>
+{% endblock %}

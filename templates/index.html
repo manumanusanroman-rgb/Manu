@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+{% block title %}Inicio | Manu Sanroman{% endblock %}
+
+{% block content %}
+
+<!-- HERO FULL WIDTH -->
+<section class="hero-full">
+
+  <div class="hero-inner">
+
+    <!-- IZQUIERDA -->
+    <div class="hero-left">
+      <h1>Manuel Sanroman Fernandez</h1>
+      <p>Entrenador de fútbol</p>
+
+      <div class="buttons" style="margin-top:18px;">
+        <a class="btn" href="/contacto">Trabajemos</a>
+      </div>
+    </div>
+
+    <!-- FOTO CENTRAL -->
+    <div class="hero-center">
+      <img src="/static/FOTOS/MANU.jpeg" alt="Manu Sanroman">
+    </div>
+
+    <!-- DERECHA -->
+    <div class="hero-right">
+      <a class="hero-link" href="/sobre-mi">¿Quién soy?</a>
+      <a class="hero-link" href="/metodologia">¿Cómo lo hago?</a>
+      <a class="hero-link" href="/partidos">Match Center</a>
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<style>
+
+/* HERO FULL WIDTH */
+.hero-full{
+  position: relative;
+  width: 100vw;
+  min-height: 90vh;
+  margin-left: calc(50% - 50vw);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+
+.hero-inner{
+  width: min(1700px, 95vw);
+  display:grid;
+  grid-template-columns: 1fr 800px 1fr;
+  align-items:center;
+  gap: 40px;
+}
+
+/* FOTO GRANDE */
+.hero-center img{
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  display:block;
+
+  -webkit-mask-image: radial-gradient(
+    ellipse at center,
+    rgba(0,0,0,1) 75%,
+    rgba(0,0,0,0) 100%
+);
+mask-image: radial-gradient(
+    ellipse at center,
+    rgba(0,0,0,1) 75%,
+    rgba(0,0,0,0) 100%
+);
+
+
+  filter: contrast(1.05) brightness(.95);
+}
+
+/* TEXTO IZQUIERDA */
+.hero-left h1{
+  font-size: 52px;
+  margin-bottom: 10px;
+}
+
+.hero-left p{
+  opacity:.7;
+  font-size:18px;
+}
+
+/* LINKS DERECHA */
+.hero-right{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  align-items:flex-start;
+}
+
+.hero-link{
+  font-size:20px;
+  font-weight:800;
+  text-decoration:none;
+  padding:12px 18px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:14px;
+  transition:.25s ease;
+}
+
+.hero-link:hover{
+  transform:translateX(8px);
+  border-color: rgba(241,215,154,.45);
+}
+
+/* RESPONSIVE */
+@media (max-width: 1100px){
+  .hero-inner{
+    grid-template-columns: 1fr;
+    text-align:center;
+  }
+
+  .hero-right{
+    align-items:center;
+  }
+
+  .hero-left{
+    order:2;
+  }
+
+  .hero-center{
+    order:1;
+  }
+
+  .hero-right{
+    order:3;
+  }
+}
+
+</style>
+
+{% endblock %}
+
