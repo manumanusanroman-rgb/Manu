@@ -84,6 +84,56 @@ PARTIDOS_DATA = [
             {"gol": "RODO",    "asistencia": "NAPO",   "minuto": 43, "asistencia_puntos": 1.0},
         ]
     },
+{
+  "id": "2026-02-18-rem-azul-vs-fc-dinastia-2016",
+  "equipo": "Rayados en la Mira Azul 2015",
+  "equipo_color": "Azul",
+  "rival": "F. C. Dinastía 2016",
+  "liga": "LIGA NACIONAL ELITE (FUT9)",
+  "jornada": "Jornada 4",
+  "fecha": "Miércoles 18 de Febrero 2026",
+  "sede": "Centro Deportivo Borregos 1 F9-A",
+  "marcador": "7 - 0",
+  "notas": "Hora: 16:15 hrs · Cita: 15:45 hrs · Uniforme: Oficial de juego (espinilleras obligatorias).",
+  "video_url": "https://www.facebook.com/share/v/1C8kQC2pb1/",
+  "mvp": "OSCAR",
+  "titulares": ["SANTI M","LUIS","BRACHO","SANTIAGO","PATO","RUY","RAMON","OSCAR","EMI"],
+  "suplentes": ["DIEGO","TAMEZ","DAMIAN","ENRIQUEZ","CARLOS"],
+  "eventos": [
+    {"gol": "OSCAR", "asistencia": "RUY",          "minuto": 2,  "asistencia_puntos": 1.0},
+    {"gol": "RAMON", "asistencia": "EMI",          "minuto": 4,  "asistencia_puntos": 1.0},
+    {"gol": "EMI",   "asistencia": "SANTIAGO",     "minuto": 15, "asistencia_puntos": 1.0},
+    {"gol": "TAMEZ", "asistencia": "RAMON",        "minuto": 20, "asistencia_puntos": 1.0},
+    {"gol": "RAMON", "asistencia": "CARLOS",       "minuto": 23, "asistencia_puntos": 1.0},
+    {"gol": "OSCAR", "asistencia": "LUIS",         "minuto": 56, "asistencia_puntos": 1.0},
+    {"gol": "OSCAR", "asistencia": "ENRIQUEZ (R)", "minuto": 59, "asistencia_puntos": 0.5}
+  ]
+},
+
+{
+  "id": "2026-02-18-rem-blanco-vs-selectivo-azul",
+  "equipo": "Rayados en la Mira Blanco 2015",
+  "equipo_color": "Blanco",
+  "rival": "Selectivo Azul",
+  "liga": "LIGA NACIONAL ELITE (FUT9)",
+  "jornada": "Jornada 4",
+  "fecha": "Miércoles 18 de Febrero 2026",
+  "sede": "Centro Deportivo Borregos 1 F9-B",
+  "marcador": "5 - 0",
+  "notas": "Hora: 16:15 hrs · Cita: 15:45 hrs · Uniforme: Oficial de juego (espinilleras obligatorias).",
+  "video_url": "https://www.facebook.com/share/v/1APjLknZrk/?mibextid=wwXIfr",
+  "mvp": "IKER",
+  "titulares": ["IAN","ANDRE","MATEO","LUCAS","JUNIOR","IKER","TADEO","RODO","ANGEL"],
+  "suplentes": ["ALFRED","JORGE","GIO","MATI","JOVANIE"],
+  "eventos": [
+    {"gol": "TADEO", "asistencia": "RODO", "minuto": 2,  "asistencia_puntos": 1.0},
+    {"gol": "IKER",  "asistencia": "ANDRE","minuto": 18, "asistencia_puntos": 1.0},
+    {"gol": "ANGEL", "asistencia": "",     "minuto": 40, "asistencia_puntos": 0.0},
+    {"gol": "IKER",  "asistencia": "RODO", "minuto": 53, "asistencia_puntos": 1.0},
+    {"gol": "JORGE", "asistencia": "",     "minuto": 54, "asistencia_puntos": 0.0}
+  ]
+},
+
     {
         "id": "2026-01-31-rayados-azul-vs-tigres-zuazua",
         "equipo": "Rayados en la Mira Azul 2015",
