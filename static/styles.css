@@ -910,3 +910,30 @@ transform: translateY(-55px);
   margin:16px auto 0;
   background: rgba(217,184,106,.45);
 }
+/* ===== Home: CTA stack right ===== */
+.hero-ctas{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  width: 100%;
+  max-width: 260px;
+}
+
+.hero-right .btn{
+  width:100%;
+  justify-content:center;
+}
+
+/* Link secundario debajo */
+.hero-link.subtle{
+  margin-top: 14px;
+  font-size: 14px;
+  font-weight: 700;
+  opacity: .75;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.02);
+}
+.hero-link.subtle:hover{
+  opacity: .95;
+  border-color: rgba(201,209,218,.22);
+}
