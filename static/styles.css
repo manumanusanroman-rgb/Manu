@@ -4,9 +4,9 @@
      ========================= */
 
   /* Base (navy como tu foto) */
-  --bg:#0B1220;
-  --panel:#0E1624;
-  --panel2:#101B2E;
+  --bg:#070D18;
+--panel:#0A1324;
+--panel2:#0C1730;
   --border:rgba(255,255,255,.08);
 
   /* Texto */
@@ -52,8 +52,8 @@ body{
   margin:0;
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
   background:
-    radial-gradient(900px 600px at 15% 0%, rgba(215,181,102,.05), transparent 60%),
-    radial-gradient(900px 600px at 90% 10%, rgba(201,209,218,.05), transparent 60%),
+    radial-gradient(900px 600px at 15% 0%, rgba(215,181,102,.03), transparent 60%),
+    radial-gradient(900px 600px at 90% 10%, rgba(201,209,218,.035), transparent 60%),
     var(--bg);
   color:var(--text);
   line-height:1.55;
@@ -143,39 +143,48 @@ a{ color:inherit; text-decoration:none; }
 .hero{
   padding:28px;
   border:1px solid var(--border);
+
+  /* Navy editorial (limpio, sin “lodo” dorado) */
   background:
-    linear-gradient(135deg, rgba(217,184,106,.12), rgba(207,211,218,.08)),
-    linear-gradient(180deg, rgba(16,16,18,1) 0%, rgba(16,16,18,.72) 100%);
+    linear-gradient(180deg, rgba(10,19,36,.92) 0%, rgba(7,13,24,.72) 100%);
+
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   overflow:hidden;
   position: relative;
 }
 
+/* Glow MUY sutil, solo para profundidad */
 .hero::after{
   content:"";
   position:absolute;
   inset:-2px;
   background:
-    radial-gradient(520px 260px at 15% 0%, rgba(217,184,106,.16), transparent 58%),
-    radial-gradient(520px 260px at 85% 10%, rgba(207,211,218,.12), transparent 58%);
+    radial-gradient(720px 360px at 12% 0%, rgba(215,181,102,.07), transparent 60%),
+    radial-gradient(720px 360px at 88% 8%, rgba(201,209,218,.06), transparent 62%),
+    radial-gradient(900px 520px at 50% 110%, rgba(0,0,0,.45), transparent 55%);
   pointer-events:none;
-  opacity:.9;
+  opacity:.75;
 }
 
+/* Tipografía más fina, más “report” */
 .hero h1{
   margin:0 0 10px;
-  font-size: clamp(28px, 4vw, 42px);
-  line-height:1.12;
-  letter-spacing:-.5px;
+  font-size: clamp(24px, 2.4vw, 34px);
+  line-height:1.06;
+  letter-spacing:.02em;
+  font-weight: 520;
   position:relative;
 }
+
 .hero p{
-  margin:0 0 18px;
+  margin:0 0 14px;
   color: var(--muted);
   max-width: 70ch;
   position:relative;
 }
+
+/* Si aún usas meta/pills en otras páginas, lo dejo elegante */
 .meta{
   display:flex;
   gap:10px;
@@ -183,7 +192,6 @@ a{ color:inherit; text-decoration:none; }
   margin: 12px 0 0;
   position:relative;
 }
-
 /* =========
    PILLS / CHIPS
 ========= */
@@ -820,11 +828,12 @@ transform: translateY(-55px);
    HOME HERO – extras
 ========= */
 .hero-kicker{
-  margin-top: 18px;
-  font-weight: 900;
-  font-size: 18px;
-  opacity: .82;
-  letter-spacing: .2px;
+  margin-top: 16px;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: rgba(242,244,248,.70);
 }
 
 .hero-cta{
