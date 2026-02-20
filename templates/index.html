@@ -10,10 +10,25 @@
 
     <!-- IZQUIERDA -->
     <div class="hero-left">
-      <h1>Manuel Sanroman Fernandez</h1>
-      <p>Entrenador de fútbol</p>
+      <h1>Player Development & Performance Systems</h1>
 
-      <div class="buttons" style="margin-top:18px;">
+<p>
+Desarrollo técnico estructurado basado en ciencia del aprendizaje, 
+formación de patrones motores y toma de decisiones aplicadas al juego real.
+</p>
+
+<div class="meta">
+  <span class="pill">Technical Development</span>
+  <span class="pill">Decision-Making</span>
+  <span class="pill">Match Transfer</span>
+</div>
+
+<h2 class="hero-kicker">
+  Manu Sanroman · Football · Analysis · Operations
+</h2>
+
+<div class="buttons hero-cta">
+
         <a class="btn" href="/contacto">Trabajemos</a>
       </div>
     </div>
@@ -34,111 +49,8 @@
 
 </section>
 
-
-
-<style>
-
-/* HERO FULL WIDTH */
-.hero-full{
-  position: relative;
-  width: 100vw;
-  min-height: 90vh;
-  margin-left: calc(50% - 50vw);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
-}
-
-.hero-inner{
-  width: min(1700px, 95vw);
-  display:grid;
-  grid-template-columns: 1fr 800px 1fr;
-  align-items:center;
-  gap: 40px;
-}
-
-/* FOTO GRANDE */
-.hero-center img{
-  width: 100%;
-  max-width: 800px;
-  height: auto;
-  display:block;
-
-  -webkit-mask-image: radial-gradient(
-    ellipse at center,
-    rgba(0,0,0,1) 75%,
-    rgba(0,0,0,0) 100%
-);
-mask-image: radial-gradient(
-    ellipse at center,
-    rgba(0,0,0,1) 75%,
-    rgba(0,0,0,0) 100%
-);
-
-
-  filter: contrast(1.05) brightness(.95);
-}
-
-/* TEXTO IZQUIERDA */
-.hero-left h1{
-  font-size: 52px;
-  margin-bottom: 10px;
-}
-
-.hero-left p{
-  opacity:.7;
-  font-size:18px;
-}
-
-/* LINKS DERECHA */
-.hero-right{
-  display:flex;
-  flex-direction:column;
-  gap:18px;
-  align-items:flex-start;
-}
-
-.hero-link{
-  font-size:20px;
-  font-weight:800;
-  text-decoration:none;
-  padding:12px 18px;
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:14px;
-  transition:.25s ease;
-}
-
-.hero-link:hover{
-  transform:translateX(8px);
-  border-color: rgba(241,215,154,.45);
-}
-
-/* RESPONSIVE */
-@media (max-width: 1100px){
-  .hero-inner{
-    grid-template-columns: 1fr;
-    text-align:center;
-  }
-
-  .hero-right{
-    align-items:center;
-  }
-
-  .hero-left{
-    order:2;
-  }
-
-  .hero-center{
-    order:1;
-  }
-
-  .hero-right{
-    order:3;
-  }
-}
-
-</style>
-
 {% endblock %}
+
+
+
 
