@@ -981,3 +981,37 @@ html[data-theme="silver"] .badge-upcoming{
 .card{
   overflow: visible;
 }
+/* ===== Partidos: scroll horizontal para evitar pagina kilométrica ===== */
+.partidos-scroll{
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding: 6px 2px 14px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.partidos-scroll .partido{
+  flex: 0 0 330px;     /* ancho de cada card */
+  scroll-snap-align: start;
+}
+
+/* scrollbar bonito */
+.partidos-scroll::-webkit-scrollbar{
+  height: 10px;
+}
+.partidos-scroll::-webkit-scrollbar-thumb{
+  background: rgba(255,255,255,0.18);
+  border-radius: 999px;
+}
+.partidos-scroll::-webkit-scrollbar-track{
+  background: rgba(255,255,255,0.06);
+  border-radius: 999px;
+}
+
+/* en pantallas grandes un poquito mas ancho */
+@media (min-width: 900px){
+  .partidos-scroll .partido{
+    flex-basis: 380px;
+  }
+}

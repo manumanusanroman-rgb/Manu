@@ -53,7 +53,7 @@
 
 <div class="section-title">Partidos</div>
 
-<section id="lista" class="cards">
+<section id="lista" class="cards partidos-scroll">
   {% for p in partidos %}
     {% set marcador_txt = (p.marcador or '')|trim %}
     {% set is_upcoming = (marcador_txt == '') %}
@@ -99,7 +99,6 @@
       </div>
     </article>
   {% endfor %}
-
 </section>
 
 <p id="vacio" style="display:none; color:var(--muted); margin-top:12px;">
@@ -112,90 +111,98 @@
   <div class="acc-body">
     <section class="match-grid" style="margin-top:12px;">
 
-      <!-- LEADERBOARD -->
-      <article class="card">
+<!-- LEADERBOARD -->
+<article class="card">
   <div class="section-title">Leaderboard · Jugadores</div>
 
-  <table id="tabla-jugadores" class="events">
-    <thead>
-      <tr>
-        <th data-type="text">Jugador</th>
-        <th data-type="num">PJ</th>
-        <th data-type="num">Goles</th>
-        <th data-type="num">Asistencias</th>
-        <th data-type="num">MVPs</th>
-        <th data-type="num">Total</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for r in leaderboard %}
+  <div class="table-wrap">
+    <table id="tabla-jugadores" class="events">
+      <thead>
         <tr>
-          <td>{{ r.jugador }}</td>
-          <td>{{ r.pj }}</td>
-          <td>{{ r.goles }}</td>
-          <td>{{ r.asistencias }}</td>
-          <td>{{ r.mvps }}</td>
-          <td><strong>{{ "%.1f"|format(r.total) }}</strong></td>
+          <th data-type="text">Jugador</th>
+          <th data-type="num">PJ</th>
+          <th data-type="num">Goles</th>
+          <th data-type="num">Asistencias</th>
+          <th data-type="num">MVPs</th>
+          <th data-type="num">Total</th>
         </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        {% for r in leaderboard %}
+          <tr>
+            <td>{{ r.jugador }}</td>
+            <td>{{ r.pj }}</td>
+            <td>{{ r.goles }}</td>
+            <td>{{ r.asistencias }}</td>
+            <td>{{ r.mvps }}</td>
+            <td><strong>{{ "%.1f"|format(r.total) }}</strong></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 </article>
 
-      <!-- PORTEROS -->
-      <article class="card">
+<!-- PORTEROS -->
+<article class="card">
   <div class="section-title">Porteros · PJ y Goles recibidos</div>
 
-  <table id="tabla-porteros" class="events">
-    <thead>
-      <tr>
-        <th data-type="text">Portero</th>
-        <th data-type="num">PJ</th>
-        <th data-type="num">Goles recibidos</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for r in porteros_tabla %}
+  <div class="table-wrap">
+    <table id="tabla-porteros" class="events">
+      <thead>
         <tr>
-          <td>{{ r.portero }}</td>
-          <td>{{ r.pj }}</td>
-          <td>{{ r.goles_recibidos }}</td>
+          <th data-type="text">Portero</th>
+          <th data-type="num">PJ</th>
+          <th data-type="num">Goles recibidos</th>
         </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        {% for r in porteros_tabla %}
+          <tr>
+            <td>{{ r.portero }}</td>
+            <td>{{ r.pj }}</td>
+            <td>{{ r.goles_recibidos }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 </article>
-     
+
 <!-- EQUIPOS -->
 <article class="card">
   <div class="section-title">Equipos · Azul vs Blanco</div>
 
-  <table id="tabla-equipos" class="events">
-    <thead>
-      <tr>
-        <th data-type="text">Equipo</th>
-        <th data-type="num">PJ</th>
-        <th data-type="num">GF</th>
-        <th data-type="num">GC</th>
-        <th data-type="num">Puntos</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for e in equipos_tabla %}
+  <div class="table-wrap">
+    <table id="tabla-equipos" class="events">
+      <thead>
         <tr>
-          <td>{{ e.equipo }}</td>
-          <td>{{ e.pj }}</td>
-          <td>{{ e.gf }}</td>
-          <td>{{ e.gc }}</td>
-          <td><strong>{{ e.pts }}</strong></td>
+          <th data-type="text">Equipo</th>
+          <th data-type="num">PJ</th>
+          <th data-type="num">GF</th>
+          <th data-type="num">GC</th>
+          <th data-type="num">Puntos</th>
         </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-</article>
-    </section>
+      </thead>
+      <tbody>
+        {% for e in equipos_tabla %}
+          <tr>
+            <td>{{ e.equipo }}</td>
+            <td>{{ e.pj }}</td>
+            <td>{{ e.gf }}</td>
+            <td>{{ e.gc }}</td>
+            <td><strong>{{ e.pts }}</strong></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   </div>
+</article>
+
+</section>
+</div>
 </details>
+
 <script>
 (function(){
 
@@ -266,26 +273,31 @@
   const vacio = document.getElementById("vacio");
 
   function filtrar(){
-    const query = (q.value || "").trim().toLowerCase();
-    const colorVal = color.value || "";
-    const resVal = res.value || "";
-    const ligaVal = liga.value || "";
-    const sedeVal = sede.value || "";
+  const query = (q.value || "").trim().toLowerCase();
+  const colorVal = color.value || "";
+  const resVal = res.value || "";
+  const ligaVal = liga.value || "";
+  const sedeVal = sede.value || "";
 
-    let shown = 0;
-    for (const c of cards){
-      const okColor = !colorVal || c.dataset.color === colorVal;
-      const okRes   = !resVal   || c.dataset.res === resVal;
-      const okLiga  = !ligaVal  || c.dataset.liga === ligaVal;
-      const okSede  = !sedeVal  || c.dataset.sede === sedeVal;
-      const okTxt   = !query    || (c.dataset.text || "").includes(query);
+  let shown = 0;
+  for (const c of cards){
+    const okColor = !colorVal || c.dataset.color === colorVal;
+    const okRes   = !resVal   || c.dataset.res === resVal;
+    const okLiga  = !ligaVal  || c.dataset.liga === ligaVal;
+    const okSede  = !sedeVal  || c.dataset.sede === sedeVal;
+    const okTxt   = !query    || (c.dataset.text || "").includes(query);
 
-      const ok = okColor && okRes && okLiga && okSede && okTxt;
-      c.style.display = ok ? "" : "none";
-      if (ok) shown++;
-    }
-    vacio.style.display = shown ? "none" : "";
+    const ok = okColor && okRes && okLiga && okSede && okTxt;
+    c.style.display = ok ? "" : "none";
+    if (ok) shown++;
   }
+
+  vacio.style.display = shown ? "none" : "";
+
+  // 🔥 ESTA ES LA LÍNEA NUEVA (regresa el scroll al inicio)
+  const lista = document.getElementById("lista");
+  if(lista) lista.scrollLeft = 0;
+}
 
   q.addEventListener("input", filtrar);
   [color, res, liga, sede].forEach(el => el.addEventListener("change", filtrar));
