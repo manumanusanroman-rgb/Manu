@@ -112,7 +112,7 @@
     <section class="match-grid" style="margin-top:12px;">
 
 <!-- LEADERBOARD -->
-<article class="card">
+<article class="card card-wide">
   <div class="section-title">Leaderboard · Jugadores</div>
 
   <div class="table-wrap">
@@ -147,7 +147,7 @@
 <article class="card">
   <div class="section-title">Porteros · PJ y Goles recibidos</div>
 
-  <div class="table-wrap">
+ 
     <table id="tabla-porteros" class="events">
       <thead>
         <tr>
@@ -173,32 +173,40 @@
 <article class="card">
   <div class="section-title">Equipos · Azul vs Blanco</div>
 
-  <div class="table-wrap">
-    <table id="tabla-equipos" class="events">
-      <thead>
+  <table id="tabla-equipos" class="events">
+    <thead>
+      <tr>
+        <th data-type="text">Equipo</th>
+        <th data-type="num">PJ</th>
+        <th data-type="num">GF</th>
+        <th data-type="num">GC</th>
+        <th data-type="num">DIF</th>
+        <th data-type="num">Puntos</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for e in equipos_tabla %}
+        {% set dif = e["gf"] - e["gc"] %}
         <tr>
-          <th data-type="text">Equipo</th>
-          <th data-type="num">PJ</th>
-          <th data-type="num">GF</th>
-          <th data-type="num">GC</th>
-          <th data-type="num">Puntos</th>
+          <td>{{ e["equipo"] }}</td>
+          <td>{{ e["pj"] }}</td>
+          <td>{{ e["gf"] }}</td>
+          <td>{{ e["gc"] }}</td>
+          <td>
+            {% if dif > 0 %}
+              <span style="color:#3ddc97;">+{{ dif }}</span>
+            {% elif dif < 0 %}
+              <span style="color:#ff5c5c;">{{ dif }}</span>
+            {% else %}
+              0
+            {% endif %}
+          </td>
+          <td><strong>{{ e["pts"] }}</strong></td>
         </tr>
-      </thead>
-      <tbody>
-        {% for e in equipos_tabla %}
-          <tr>
-            <td>{{ e["equipo"] }}</td>
-	    <td>{{ e["pj"] }}</td>
-	    <td>{{ e["gf"] }}</td>
-	    <td>{{ e["gc"] }}</td>
-	    <td><strong>{{ e["pts"] }}</strong></td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
+      {% endfor %}
+    </tbody>
+  </table>
 </article>
-
 </section>
 </div>
 </details>

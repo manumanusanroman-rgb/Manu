@@ -973,8 +973,8 @@ html[data-theme="silver"] .badge-upcoming{
 }
 
 /* fuerza que la tabla no se aplaste en pantallas chicas */
-.table-wrap .events{
-  min-width: 640px;
+#tabla-jugadores{
+  min-width: 720px;
 }
 
 /* evita que el contenedor de la card “corte” la tabla */
@@ -1029,4 +1029,13 @@ html[data-theme="silver"] .badge-upcoming{
 .table-wrap .events{
   width: 100%;
   min-width: 720px;  /* mantiene scroll horizontal cuando hace falta */
+}
+/* Jugadores ocupa 2 columnas en desktop */
+@media (min-width: 900px){
+  .match-grid{
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .card-wide{
+    grid-column: span 2;
+  }
 }
