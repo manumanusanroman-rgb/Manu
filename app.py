@@ -936,8 +936,7 @@ def partidos(request: Request):
         if sede:
             sedes.add(sede)
 
-    # ✅ PJ (Partidos Jugados) — TIENE que ir dentro de la función
-    # Usamos partidos_out para contar exactamente lo que se renderiza (más seguro).
+    # ✅ PJ (Partidos Jugados)
     pj_index = build_pj_index(partidos_out)
 
     partidos_out = ordenar_partidos(partidos_out)
@@ -948,10 +947,10 @@ def partidos(request: Request):
     # ===== tus tablas actuales (NO se tocan) =====
     goles_top, asist_top, mvps_top = calcular_estadisticas(partidos_out)
 
-    # ===== LEADERBOARD (Goles + Asistencias + MVPs + GA + TOTAL) =====
+    # ===== LEADERBOARD (Goles + Asistencias + MVPs + GA + TOTAL + PJ) =====
     sort = (request.query_params.get("sort") or "total").strip().lower()
     if sort not in ("total", "goles", "asistencias", "mvps", "ga", "pj"):
-    sort = "total"
+        sort = "total"
 
     lb = {}
 
@@ -960,15 +959,15 @@ def partidos(request: Request):
         j = (nombre or "").strip()
         if not j:
             continue
-        lb.setdefault(j, {"jugador": j, "goles": 0, "asistencias": 0.0, "mvps": 0, "ga": 0.0, "total": 0.0})
+        lb.setdefault(j, {"jugador": j, "goles": 0, "asistencias": 0.0, "mvps": 0, "ga": 0.0, "total": 0.0, "pj": 0})
         lb[j]["goles"] = int(n or 0)
 
-    # asistencias (pueden ser .5)
+    # asistencias
     for nombre, n in (asist_top or []):
         j = (nombre or "").strip()
         if not j:
             continue
-        lb.setdefault(j, {"jugador": j, "goles": 0, "asistencias": 0.0, "mvps": 0, "ga": 0.0, "total": 0.0})
+        lb.setdefault(j, {"jugador": j, "goles": 0, "asistencias": 0.0, "mvps": 0, "ga": 0.0, "total": 0.0, "pj": 0})
         try:
             lb[j]["asistencias"] = float(n or 0)
         except (TypeError, ValueError):
@@ -979,31 +978,27 @@ def partidos(request: Request):
         j = (nombre or "").strip()
         if not j:
             continue
-        lb.setdefault(j, {"jugador": j, "goles": 0, "asistencias": 0.0, "mvps": 0, "ga": 0.0, "total": 0.0})
+        lb.setdefault(j, {"jugador": j, "goles": 0, "asistencias": 0.0, "mvps": 0, "ga": 0.0, "total": 0.0, "pj": 0})
         lb[j]["mvps"] = int(n or 0)
 
-   leaderboard = list(lb.values())
+    leaderboard = list(lb.values())
 
-# calcular GA y TOTAL
-for r in leaderboard:
-    g = float(r.get("goles", 0) or 0)
-    a = float(r.get("asistencias", 0) or 0)
-    m = float(r.get("mvps", 0) or 0)
-    r["ga"] = g + a
-    r["total"] = g + a + m
+    # calcular GA, TOTAL, PJ
+    for r in leaderboard:
+        g = float(r.get("goles", 0) or 0)
+        a = float(r.get("asistencias", 0) or 0)
+        m = float(r.get("mvps", 0) or 0)
+        r["ga"] = g + a
+        r["total"] = g + a + m
+        r["pj"] = pj_index.get((r.get("jugador") or "").strip(), 0)
 
-# ✅ INYECTAR PJ EN LEADERBOARD
-for r in leaderboard:
-    nombre = (r.get("jugador") or "").strip()
-    r["pj"] = pj_index.get(nombre, 0)
-
-    # ordenar (con desempates para que sea estable)
+    # ordenar (estable)
     if sort == "goles":
         leaderboard.sort(key=lambda r: (-float(r["goles"]), -float(r["total"]), r["jugador"]))
     elif sort == "asistencias":
         leaderboard.sort(key=lambda r: (-float(r["asistencias"]), -float(r["total"]), r["jugador"]))
     elif sort == "pj":
-    leaderboard.sort(key=lambda r: (-float(r.get("pj", 0) or 0), -float(r["total"]), r["jugador"]))
+        leaderboard.sort(key=lambda r: (-float(r.get("pj", 0) or 0), -float(r["total"]), r["jugador"]))
     elif sort == "mvps":
         leaderboard.sort(key=lambda r: (-float(r["mvps"]), -float(r["total"]), r["jugador"]))
     elif sort == "ga":
@@ -1015,22 +1010,20 @@ for r in leaderboard:
     stats_jugadores = tabla_acumulada_por_jugador(partidos_out)
     porteros_tabla = tabla_porteros(partidos_out)
 
-    # =========================
-# INYECTAR PJ (Partidos Jugados)
-# =========================
+       # ✅ INYECTAR PJ en tablas
+    if isinstance(stats_jugadores, list):
+        for r in stats_jugadores:
+            if isinstance(r, dict):
+                nombre = (r.get("jugador") or r.get("nombre") or "").strip()
+                r["pj"] = pj_index.get(nombre, 0)
 
-if isinstance(stats_jugadores, list):
-    for r in stats_jugadores:
-        if isinstance(r, dict):
-            nombre = (r.get("jugador") or r.get("nombre") or "").strip()
-            r["pj"] = pj_index.get(nombre, 0)
+    if isinstance(porteros_tabla, list):
+        for r in porteros_tabla:
+            if isinstance(r, dict):
+                nombre = (r.get("portero") or r.get("jugador") or "").strip()
+                r["pj"] = pj_index.get(nombre, 0)
 
-if isinstance(porteros_tabla, list):
-    for r in porteros_tabla:
-        if isinstance(r, dict):
-            nombre = (r.get("portero") or r.get("jugador") or "").strip()
-            r["pj"] = pj_index.get(nombre, 0)
-
+    # ✅ RETURN (dentro de def partidos)
     return templates.TemplateResponse(
         "partidos.html",
         {
@@ -1055,9 +1048,7 @@ if isinstance(porteros_tabla, list):
     )
 
 
-
-
-@app.get("/partidos/{partido_id}", response_class=HTMLResponse)
+@app.get("/partidos/{partido_id}", response_class=HTMLResponse) 
 def partido_detalle(request: Request, partido_id: str):
     partidos_by_id = {p["id"]: p for p in PARTIDOS_DATA}
     p = partidos_by_id.get(partido_id)
