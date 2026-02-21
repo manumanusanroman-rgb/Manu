@@ -1009,6 +1009,7 @@ def partidos(request: Request):
     tabla_equipos = tabla_equipos_resumen(partidos_out)
     stats_jugadores = tabla_acumulada_por_jugador(partidos_out)
     porteros_tabla = tabla_porteros(partidos_out)
+    equipos_tabla = tabla_equipos_resumen(partidos_out)
 
        # ✅ INYECTAR PJ en tablas
     if isinstance(stats_jugadores, list):
@@ -1023,29 +1024,31 @@ def partidos(request: Request):
                 nombre = (r.get("portero") or r.get("jugador") or "").strip()
                 r["pj"] = pj_index.get(nombre, 0)
 
-    # ✅ RETURN (dentro de def partidos)
-    return templates.TemplateResponse(
-        "partidos.html",
-        {
-            "request": request,
-            "partidos": partidos_out,
-            "proximo": proximo,
-            "ligas": LIGAS_FIJAS,
-            "sedes": sorted(sedes),
-            "colores": COLORES_FIJOS,
+   # ✅ RETURN (dentro de def partidos)
+return templates.TemplateResponse(
+    "partidos.html",
+    {
+        "request": request,
+        "partidos": partidos_out,
+        "proximo": proximo,
+        "ligas": LIGAS_FIJAS,
+        "sedes": sorted(sedes),
+        "colores": COLORES_FIJOS,
 
-            "goles_top": goles_top,
-            "asist_top": asist_top,
-            "mvps_top": mvps_top,
+        "goles_top": goles_top,
+        "asist_top": asist_top,
+        "mvps_top": mvps_top,
 
-            "leaderboard": leaderboard,
-            "sort": sort,
+        "leaderboard": leaderboard,
+        "sort": sort,
 
-            "equipos_tabla": tabla_equipos,
-            "stats_jugadores": stats_jugadores,
-            "porteros_tabla": porteros_tabla
-        }
-    )
+        # ✅ EQUIPOS (Azul/Blanco) con PJ,V,E,D,GF,GC,DG,Pts
+        "equipos_tabla": equipos_tabla,
+
+        "stats_jugadores": stats_jugadores,
+        "porteros_tabla": porteros_tabla
+    }
+)
 
 
 @app.get("/partidos/{partido_id}", response_class=HTMLResponse) 
