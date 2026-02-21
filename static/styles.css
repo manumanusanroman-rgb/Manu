@@ -958,3 +958,26 @@ html[data-theme="silver"] .badge-upcoming{
   opacity: .95;
   border-color: rgba(201,209,218,.22);
 }
+/* Evita que las cards se estiren a la altura de la más alta */
+.match-grid{
+  align-items: start;
+}
+.match-grid .card{
+  align-self: start;
+}
+/* ===== Tables: horizontal scroll (fix cut columns) ===== */
+.table-wrap{
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* fuerza que la tabla no se aplaste en pantallas chicas */
+.table-wrap .events{
+  min-width: 720px;
+}
+
+/* evita que el contenedor de la card “corte” la tabla */
+.card{
+  overflow: visible;
+}

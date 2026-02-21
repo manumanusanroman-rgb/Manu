@@ -1041,7 +1041,7 @@ def partidos(request: Request):
             "leaderboard": leaderboard,
             "sort": sort,
 
-            "tabla_equipos": tabla_equipos,
+            "equipos_tabla": tabla_equipos,
             "stats_jugadores": stats_jugadores,
             "porteros_tabla": porteros_tabla
         }
