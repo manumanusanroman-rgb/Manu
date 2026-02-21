@@ -974,7 +974,7 @@ html[data-theme="silver"] .badge-upcoming{
 
 /* fuerza que la tabla no se aplaste en pantallas chicas */
 .table-wrap .events{
-  min-width: 720px;
+  min-width: 640px;
 }
 
 /* evita que el contenedor de la card “corte” la tabla */
@@ -1014,4 +1014,19 @@ html[data-theme="silver"] .badge-upcoming{
   .partidos-scroll .partido{
     flex-basis: 380px;
   }
+}
+/* FIX: permitir que las cards dentro del grid se puedan encoger (no empujan columnas) */
+.match-grid > .card{
+  min-width: 0;
+}
+
+/* el contenedor de tabla nunca debe romper el layout */
+.table-wrap{
+  max-width: 100%;
+}
+
+/* la tabla no debe forzar el ancho del card */
+.table-wrap .events{
+  width: 100%;
+  min-width: 720px;  /* mantiene scroll horizontal cuando hace falta */
 }

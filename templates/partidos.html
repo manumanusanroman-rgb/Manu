@@ -187,11 +187,11 @@
       <tbody>
         {% for e in equipos_tabla %}
           <tr>
-            <td>{{ e.equipo }}</td>
-            <td>{{ e.pj }}</td>
-            <td>{{ e.gf }}</td>
-            <td>{{ e.gc }}</td>
-            <td><strong>{{ e.pts }}</strong></td>
+            <td>{{ e["equipo"] }}</td>
+	    <td>{{ e["pj"] }}</td>
+	    <td>{{ e["gf"] }}</td>
+	    <td>{{ e["gc"] }}</td>
+	    <td><strong>{{ e["pts"] }}</strong></td>
           </tr>
         {% endfor %}
       </tbody>
