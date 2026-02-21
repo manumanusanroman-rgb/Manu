@@ -117,20 +117,23 @@
 
         {% if porteros_tabla %}
           <table class="events">
-            <thead>
-              <tr>
-                <th>Portero</th>
-                <th>Goles recibidos</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for r in porteros_tabla %}
-                <tr>
-                  <td>{{ r.portero }}</td>
-                  <td>{{ r.goles_recibidos }}</td>
-                </tr>
-              {% endfor %}
-            </tbody>
+           <thead>
+  <tr>
+    <th>Portero</th>
+    <th>PJ</th>
+    <th>Goles recibidos</th>
+  </tr>
+</thead>
+
+<tbody>
+  {% for r in porteros_tabla %}
+    <tr>
+      <td>{{ r.portero if r.portero is defined else r["portero"] }}</td>
+      <td>{{ r.pj if r.pj is defined else (r["pj"] if "pj" in r else 0) }}</td>
+      <td>{{ r.goles_recibidos if r.goles_recibidos is defined else r["goles_recibidos"] }}</td>
+    </tr>
+  {% endfor %}
+</tbody>
           </table>
         {% else %}
           <p style="color:var(--muted);">Sin datos.</p>
@@ -146,6 +149,12 @@
             <thead>
               <tr>
                 <th>Jugador</th>
+		
+		<th>
+  		   <a href="/partidos?sort=pj" style="text-decoration:none;">
+  		    PJ {% if sort == "pj" %}▼{% endif %}
+ 		     </a>
+		</th>
 
                 <th>
                   <a href="/partidos?sort=goles" style="text-decoration:none;">
@@ -177,6 +186,7 @@
               {% for r in leaderboard %}
                 <tr>
                   <td>{{ r.jugador }}</td>
+		  <td>{{ r.pj }}</td>
                   <td>{{ r.goles }}</td>
                   <td>{{ r.asistencias }}</td>
                   <td>{{ r.mvps }}</td>

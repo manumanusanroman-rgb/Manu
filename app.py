@@ -838,6 +838,51 @@ def ordenar_partidos(partidos):
 
     return proximos + pasados + sin_dt
 
+import re
+from collections import defaultdict
+from typing import Any
+
+def _norm_name(s: str) -> str:
+    """Normaliza nombre para conteo consistente (espacios, mayúsculas)."""
+    if not s:
+        return ""
+    s = s.strip()
+    s = re.sub(r"\s+", " ", s)
+    return s
+
+def _names_from_field(val: Any) -> list[str]:
+    """
+    Convierte titulares/suplentes a lista de nombres.
+    Soporta:
+      - list[str]
+      - string separado por comas o saltos de línea
+      - None
+    """
+    if not val:
+        return []
+    if isinstance(val, list):
+        return [_norm_name(x) for x in val if _norm_name(x)]
+    if isinstance(val, str):
+        parts = re.split(r"[,\n]+", val)
+        return [_norm_name(x) for x in parts if _norm_name(x)]
+    return []
+
+def build_pj_index(partidos_data: list[dict]) -> dict[str, int]:
+    """
+    PJ = cantidad de partidos donde aparece el nombre en titulares o suplentes.
+    (Si aparece en suplentes también cuenta como jugó.)
+    """
+    pj = defaultdict(int)
+
+    for p in partidos_data:
+        titulares = set(_names_from_field(p.get("titulares")))
+        suplentes = set(_names_from_field(p.get("suplentes")))
+        convocados = titulares | suplentes
+
+        for nombre in convocados:
+            pj[nombre] += 1
+
+    return dict(pj)
 
 # =========================
 # RUTAS
@@ -891,6 +936,10 @@ def partidos(request: Request):
         if sede:
             sedes.add(sede)
 
+    # ✅ PJ (Partidos Jugados) — TIENE que ir dentro de la función
+    # Usamos partidos_out para contar exactamente lo que se renderiza (más seguro).
+    pj_index = build_pj_index(partidos_out)
+
     partidos_out = ordenar_partidos(partidos_out)
 
     # highlight: siguiente partido (primer upcoming)
@@ -901,8 +950,8 @@ def partidos(request: Request):
 
     # ===== LEADERBOARD (Goles + Asistencias + MVPs + GA + TOTAL) =====
     sort = (request.query_params.get("sort") or "total").strip().lower()
-    if sort not in ("total", "goles", "asistencias", "mvps", "ga"):
-        sort = "total"
+    if sort not in ("total", "goles", "asistencias", "mvps", "ga", "pj"):
+    sort = "total"
 
     lb = {}
 
@@ -933,21 +982,28 @@ def partidos(request: Request):
         lb.setdefault(j, {"jugador": j, "goles": 0, "asistencias": 0.0, "mvps": 0, "ga": 0.0, "total": 0.0})
         lb[j]["mvps"] = int(n or 0)
 
-    leaderboard = list(lb.values())
+   leaderboard = list(lb.values())
 
-    # calcular GA y TOTAL (AQUÍ está lo que te faltaba bien seguro)
-    for r in leaderboard:
-        g = float(r.get("goles", 0) or 0)
-        a = float(r.get("asistencias", 0) or 0)
-        m = float(r.get("mvps", 0) or 0)
-        r["ga"] = g + a
-        r["total"] = g + a + m
+# calcular GA y TOTAL
+for r in leaderboard:
+    g = float(r.get("goles", 0) or 0)
+    a = float(r.get("asistencias", 0) or 0)
+    m = float(r.get("mvps", 0) or 0)
+    r["ga"] = g + a
+    r["total"] = g + a + m
+
+# ✅ INYECTAR PJ EN LEADERBOARD
+for r in leaderboard:
+    nombre = (r.get("jugador") or "").strip()
+    r["pj"] = pj_index.get(nombre, 0)
 
     # ordenar (con desempates para que sea estable)
     if sort == "goles":
         leaderboard.sort(key=lambda r: (-float(r["goles"]), -float(r["total"]), r["jugador"]))
     elif sort == "asistencias":
         leaderboard.sort(key=lambda r: (-float(r["asistencias"]), -float(r["total"]), r["jugador"]))
+    elif sort == "pj":
+    leaderboard.sort(key=lambda r: (-float(r.get("pj", 0) or 0), -float(r["total"]), r["jugador"]))
     elif sort == "mvps":
         leaderboard.sort(key=lambda r: (-float(r["mvps"]), -float(r["total"]), r["jugador"]))
     elif sort == "ga":
@@ -958,6 +1014,22 @@ def partidos(request: Request):
     tabla_equipos = tabla_equipos_resumen(partidos_out)
     stats_jugadores = tabla_acumulada_por_jugador(partidos_out)
     porteros_tabla = tabla_porteros(partidos_out)
+
+    # =========================
+# INYECTAR PJ (Partidos Jugados)
+# =========================
+
+if isinstance(stats_jugadores, list):
+    for r in stats_jugadores:
+        if isinstance(r, dict):
+            nombre = (r.get("jugador") or r.get("nombre") or "").strip()
+            r["pj"] = pj_index.get(nombre, 0)
+
+if isinstance(porteros_tabla, list):
+    for r in porteros_tabla:
+        if isinstance(r, dict):
+            nombre = (r.get("portero") or r.get("jugador") or "").strip()
+            r["pj"] = pj_index.get(nombre, 0)
 
     return templates.TemplateResponse(
         "partidos.html",
