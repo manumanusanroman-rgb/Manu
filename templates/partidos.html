@@ -114,142 +114,146 @@
 
       <!-- LEADERBOARD -->
       <article class="card">
-        <div class="section-title">Leaderboard · Jugadores</div>
+  <div class="section-title">Leaderboard · Jugadores</div>
 
-        <table id="tabla-jugadores" class="events">
-          <thead>
-            <tr>
-              <th data-type="text">Jugador</th>
-              <th data-type="num">PJ</th>
-              <th data-type="num">Goles</th>
-              <th data-type="num">Asistencias</th>
-              <th data-type="num">MVPs</th>
-              <th data-type="num">Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for r in leaderboard %}
-              <tr>
-                <td>{{ r.jugador }}</td>
-                <td>{{ r.pj }}</td>
-                <td>{{ r.goles }}</td>
-                <td>{{ r.asistencias }}</td>
-                <td>{{ r.mvps }}</td>
-                <td><strong>{{ "%.1f"|format(r.total) }}</strong></td>
-              </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </article>
+  <table id="tabla-jugadores" class="events">
+    <thead>
+      <tr>
+        <th data-type="text">Jugador</th>
+        <th data-type="num">PJ</th>
+        <th data-type="num">Goles</th>
+        <th data-type="num">Asistencias</th>
+        <th data-type="num">MVPs</th>
+        <th data-type="num">Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in leaderboard %}
+        <tr>
+          <td>{{ r.jugador }}</td>
+          <td>{{ r.pj }}</td>
+          <td>{{ r.goles }}</td>
+          <td>{{ r.asistencias }}</td>
+          <td>{{ r.mvps }}</td>
+          <td><strong>{{ "%.1f"|format(r.total) }}</strong></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</article>
 
       <!-- PORTEROS -->
       <article class="card">
-        <div class="section-title">Porteros · Goles recibidos</div>
+  <div class="section-title">Porteros · PJ y Goles recibidos</div>
 
-        {% if porteros_tabla %}
-          <table class="events">
-            <thead>
-              <tr>
-                <th>Portero</th>
-                <th>Goles recibidos</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for r in porteros_tabla %}
-                <tr>
-                  <td>{{ r.portero }}</td>
-                  <td>{{ r.goles_recibidos }}</td>
-                </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        {% else %}
-          <p style="color:var(--muted);">Sin datos.</p>
-        {% endif %}
-      </article>
+  <table id="tabla-porteros" class="events">
+    <thead>
+      <tr>
+        <th data-type="text">Portero</th>
+        <th data-type="num">PJ</th>
+        <th data-type="num">Goles recibidos</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in porteros_tabla %}
+        <tr>
+          <td>{{ r.portero }}</td>
+          <td>{{ r.pj }}</td>
+          <td>{{ r.goles_recibidos }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</article>
+     
+<!-- EQUIPOS -->
+<article class="card">
+  <div class="section-title">Equipos · Azul vs Blanco</div>
 
-      <!-- GOLEADORES -->
-      <article class="card">
-        <div class="section-title">Goleadores</div>
-
-        {% if goles_top %}
-          <table class="events">
-            <thead>
-              <tr>
-                <th>Jugador</th>
-                <th>Goles</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for nombre, n in goles_top %}
-                <tr>
-                  <td>{{ nombre }}</td>
-                  <td>{{ n }}</td>
-                </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        {% else %}
-          <p style="color:var(--muted);">Sin datos.</p>
-        {% endif %}
-      </article>
-
-      <!-- ASISTENCIAS -->
-      <article class="card">
-        <div class="section-title">Asistencias</div>
-
-        {% if asist_top %}
-          <table class="events">
-            <thead>
-              <tr>
-                <th>Jugador</th>
-                <th>Asistencias</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for nombre, n in asist_top %}
-                <tr>
-                  <td>{{ nombre }}</td>
-                  <td>{{ n }}</td>
-                </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        {% else %}
-          <p style="color:var(--muted);">Sin datos.</p>
-        {% endif %}
-      </article>
-
-      <!-- MVPS -->
-      <article class="card">
-        <div class="section-title">MVPs</div>
-
-        {% if mvps_top %}
-          <table class="events">
-            <thead>
-              <tr>
-                <th>Jugador</th>
-                <th>MVPs</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for nombre, n in mvps_top %}
-                <tr>
-                  <td>{{ nombre }}</td>
-                  <td>{{ n }}</td>
-                </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        {% else %}
-          <p style="color:var(--muted);">Sin datos.</p>
-        {% endif %}
-      </article>
-
+  <table id="tabla-equipos" class="events">
+    <thead>
+      <tr>
+        <th data-type="text">Equipo</th>
+        <th data-type="num">PJ</th>
+        <th data-type="num">GF</th>
+        <th data-type="num">GC</th>
+        <th data-type="num">Puntos</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for e in equipos_tabla %}
+        <tr>
+          <td>{{ e.equipo }}</td>
+          <td>{{ e.pj }}</td>
+          <td>{{ e.gf }}</td>
+          <td>{{ e.gc }}</td>
+          <td><strong>{{ e.pts }}</strong></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</article>
     </section>
   </div>
 </details>
+<script>
+(function(){
 
+  function parseCell(td, type){
+    const txt = (td.textContent || "").trim();
+    if(type === "num"){
+      const n = parseFloat(txt.replace(",", "."));
+      return isNaN(n) ? -Infinity : n;
+    }
+    return txt.toLowerCase();
+  }
+
+  function makeSortable(tableId){
+    const table = document.getElementById(tableId);
+    if(!table) return;
+
+    const thead = table.querySelector("thead");
+    const tbody = table.querySelector("tbody");
+    if(!thead || !tbody) return;
+
+    const headers = Array.from(thead.querySelectorAll("th"));
+    let currentCol = null;
+    let dir = 1;
+
+    headers.forEach((th, idx) => {
+      th.style.cursor = "pointer";
+
+      th.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const type = th.dataset.type || "text";
+
+        dir = (currentCol === idx) ? -dir : 1;
+        currentCol = idx;
+
+        const rows = Array.from(tbody.querySelectorAll("tr"));
+
+        rows.sort((a,b) => {
+          const aVal = parseCell(a.children[idx], type);
+          const bVal = parseCell(b.children[idx], type);
+
+          if(aVal < bVal) return -1 * dir;
+          if(aVal > bVal) return  1 * dir;
+          return 0;
+        });
+
+        rows.forEach(r => tbody.appendChild(r));
+      });
+    });
+  }
+
+  makeSortable("tabla-jugadores");
+  makeSortable("tabla-porteros");
+  makeSortable("tabla-equipos");
+
+})();
+</script>
 <script>
 (function(){
   const q = document.getElementById("q");
