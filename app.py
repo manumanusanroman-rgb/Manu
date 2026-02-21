@@ -121,7 +121,7 @@ PARTIDOS_DATA = [
   "sede": "Centro Deportivo Borregos 1 F9-B",
   "marcador": "5 - 0",
   "notas": "Hora: 16:15 hrs · Cita: 15:45 hrs · Uniforme: Oficial de juego (espinilleras obligatorias).",
-  "video_url": "https://www.facebook.com/share/v/1APjLknZrk/?mibextid=wwXIfr",
+  "video_url": "https://www.facebook.com/100085635710864/videos/1463260981828837",
   "mvp": "IKER",
   "titulares": ["IAN","ANDRE","MATEO","LUCAS","JUNIOR","IKER","TADEO","RODO","ANGEL"],
   "suplentes": ["ALFRED","JORGE","GIO","MATI","JOVANIE"],
@@ -939,27 +939,34 @@ def partidos(request: Request):
     # ✅ PJ (Partidos Jugados)
     pj_index = build_pj_index(partidos_out)
 
+    # ordenar partidos
     partidos_out = ordenar_partidos(partidos_out)
 
     # highlight: siguiente partido (primer upcoming)
     proximo = next((p for p in partidos_out if p.get("is_upcoming")), None)
 
-    # ===== tus tablas actuales (NO se tocan) =====
+    # ===== stats base =====
     goles_top, asist_top, mvps_top = calcular_estadisticas(partidos_out)
 
-    # ===== LEADERBOARD (Goles + Asistencias + MVPs + GA + TOTAL + PJ) =====
+    # ===== LEADERBOARD (lo de sort por query ya no se usa para UI, pero lo dejamos por si acaso) =====
     sort = (request.query_params.get("sort") or "total").strip().lower()
     if sort not in ("total", "goles", "asistencias", "mvps", "ga", "pj"):
         sort = "total"
 
     lb = {}
 
+    def ensure(j):
+        lb.setdefault(
+            j,
+            {"jugador": j, "goles": 0, "asistencias": 0.0, "mvps": 0, "ga": 0.0, "total": 0.0, "pj": 0},
+        )
+
     # goles
     for nombre, n in (goles_top or []):
         j = (nombre or "").strip()
         if not j:
             continue
-        lb.setdefault(j, {"jugador": j, "goles": 0, "asistencias": 0.0, "mvps": 0, "ga": 0.0, "total": 0.0, "pj": 0})
+        ensure(j)
         lb[j]["goles"] = int(n or 0)
 
     # asistencias
@@ -967,7 +974,7 @@ def partidos(request: Request):
         j = (nombre or "").strip()
         if not j:
             continue
-        lb.setdefault(j, {"jugador": j, "goles": 0, "asistencias": 0.0, "mvps": 0, "ga": 0.0, "total": 0.0, "pj": 0})
+        ensure(j)
         try:
             lb[j]["asistencias"] = float(n or 0)
         except (TypeError, ValueError):
@@ -978,7 +985,7 @@ def partidos(request: Request):
         j = (nombre or "").strip()
         if not j:
             continue
-        lb.setdefault(j, {"jugador": j, "goles": 0, "asistencias": 0.0, "mvps": 0, "ga": 0.0, "total": 0.0, "pj": 0})
+        ensure(j)
         lb[j]["mvps"] = int(n or 0)
 
     leaderboard = list(lb.values())
@@ -1004,14 +1011,22 @@ def partidos(request: Request):
     elif sort == "ga":
         leaderboard.sort(key=lambda r: (-float(r["ga"]), -float(r["total"]), r["jugador"]))
     else:
-        leaderboard.sort(key=lambda r: (-float(r["total"]), -float(r["goles"]), -float(r["asistencias"]), -float(r["mvps"]), r["jugador"]))
+        leaderboard.sort(
+            key=lambda r: (
+                -float(r["total"]),
+                -float(r["goles"]),
+                -float(r["asistencias"]),
+                -float(r["mvps"]),
+                r["jugador"],
+            )
+        )
 
-    tabla_equipos = tabla_equipos_resumen(partidos_out)
+    # ✅ TABLAS
     stats_jugadores = tabla_acumulada_por_jugador(partidos_out)
     porteros_tabla = tabla_porteros(partidos_out)
     equipos_tabla = tabla_equipos_resumen(partidos_out)
 
-       # ✅ INYECTAR PJ en tablas
+    # ✅ INYECTAR PJ en tablas
     if isinstance(stats_jugadores, list):
         for r in stats_jugadores:
             if isinstance(r, dict):
@@ -1024,31 +1039,32 @@ def partidos(request: Request):
                 nombre = (r.get("portero") or r.get("jugador") or "").strip()
                 r["pj"] = pj_index.get(nombre, 0)
 
-   # ✅ RETURN (dentro de def partidos)
-return templates.TemplateResponse(
-    "partidos.html",
-    {
-        "request": request,
-        "partidos": partidos_out,
-        "proximo": proximo,
-        "ligas": LIGAS_FIJAS,
-        "sedes": sorted(sedes),
-        "colores": COLORES_FIJOS,
+    # ✅ RETURN (DENTRO DE LA FUNCIÓN)
+    return templates.TemplateResponse(
+        "partidos.html",
+        {
+            "request": request,
+            "partidos": partidos_out,
+            "proximo": proximo,
+            "ligas": LIGAS_FIJAS,
+            "sedes": sorted(sedes),
+            "colores": COLORES_FIJOS,
 
-        "goles_top": goles_top,
-        "asist_top": asist_top,
-        "mvps_top": mvps_top,
+            # (pueden quedarse aunque ya no los uses en HTML)
+            "goles_top": goles_top,
+            "asist_top": asist_top,
+            "mvps_top": mvps_top,
 
-        "leaderboard": leaderboard,
-        "sort": sort,
+            "leaderboard": leaderboard,
+            "sort": sort,
 
-        # ✅ EQUIPOS (Azul/Blanco) con PJ,V,E,D,GF,GC,DG,Pts
-        "equipos_tabla": equipos_tabla,
+            # ✅ EQUIPOS (sale como equipo_color, pj, v, e, d, gf, gc, dg, pts)
+            "equipos_tabla": equipos_tabla,
 
-        "stats_jugadores": stats_jugadores,
-        "porteros_tabla": porteros_tabla
-    }
-)
+            "stats_jugadores": stats_jugadores,
+            "porteros_tabla": porteros_tabla,
+        }
+    )
 
 
 @app.get("/partidos/{partido_id}", response_class=HTMLResponse) 
