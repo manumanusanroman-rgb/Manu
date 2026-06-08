@@ -748,7 +748,7 @@ def tabla_acumulada_por_jugador(partidos):
         a = asist.get(j, 0.0)
         m = mvps.get(j, 0)
 
-        total = g + a + m
+        total = g + a
 
         if total == 0:
             continue
@@ -889,22 +889,22 @@ def build_pj_index(partidos_data: list[dict]) -> dict[str, int]:
 # =========================
 @app.get("/", response_class=HTMLResponse)
 def home(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
+    return templates.TemplateResponse(request, "index.html", {"request": request})
 
 
 @app.get("/metodologia", response_class=HTMLResponse)
 def metodologia(request: Request):
-    return templates.TemplateResponse("metodologia.html", {"request": request})
+    return templates.TemplateResponse(request, "metodologia.html", {"request": request})
 
 
 
 @app.get("/sobre-mi", response_class=HTMLResponse)
 def sobre_mi(request: Request):
-    return templates.TemplateResponse("sobre_mi.html", {"request": request})
+    return templates.TemplateResponse(request, "sobre_mi.html", {"request": request})
 
 @app.get("/contacto", response_class=HTMLResponse)
 def contacto(request: Request):
-    return templates.TemplateResponse("contacto.html", {"request": request})
+    return templates.TemplateResponse(request, "contacto.html", {"request": request})
 
 @app.get("/partidos", response_class=HTMLResponse)
 def partidos(request: Request):
@@ -996,7 +996,7 @@ def partidos(request: Request):
         a = float(r.get("asistencias", 0) or 0)
         m = float(r.get("mvps", 0) or 0)
         r["ga"] = g + a
-        r["total"] = g + a + m
+        r["total"] = g + a
         r["pj"] = pj_index.get((r.get("jugador") or "").strip(), 0)
 
     # ordenar (estable)
@@ -1041,6 +1041,7 @@ def partidos(request: Request):
 
     # ✅ RETURN (DENTRO DE LA FUNCIÓN)
     return templates.TemplateResponse(
+        request,
         "partidos.html",
         {
             "request": request,
@@ -1106,6 +1107,7 @@ def partido_detalle(request: Request, partido_id: str):
     asist_top = sorted(asistencias.items(), key=lambda x: x[1], reverse=True)
 
     return templates.TemplateResponse(
+        request,
         "partido_detalle.html",
         {"request": request, "p": p, "goles_top": goles_top, "asist_top": asist_top}
     )

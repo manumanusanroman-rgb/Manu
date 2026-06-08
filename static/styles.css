@@ -1030,6 +1030,15 @@ html[data-theme="silver"] .badge-upcoming{
   width: 100%;
   min-width: 720px;  /* mantiene scroll horizontal cuando hace falta */
 }
+
+#tabla-porteros,
+#tabla-equipos{
+  min-width: 0;
+}
+
+.table-wrap-compact .events{
+  min-width: 100%;
+}
 /* Jugadores ocupa 2 columnas en desktop */
 @media (min-width: 900px){
   .match-grid{
