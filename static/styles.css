@@ -1048,3 +1048,373 @@ html[data-theme="silver"] .badge-upcoming{
     grid-column: span 2;
   }
 }
+
+/* =========
+   HOME MAP
+========= */
+.home-map{
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  padding: 18px 0 30px;
+}
+
+.home-map__lang{
+  width: fit-content;
+  margin: 0 auto 10px;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 14px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.04);
+  color: var(--muted);
+  font-size: 13px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.home-map__topbar{
+  width: min(1700px, 95vw);
+  height: 22px;
+  margin: 0 auto;
+  border: 2px solid #121212;
+  border-bottom: 0;
+  background: linear-gradient(180deg, #d7b566, #c6a04d);
+}
+
+.home-map__stage{
+  width: min(1700px, 95vw);
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 18px;
+  display:grid;
+  grid-template-columns: 1.1fr 1.2fr 1fr;
+  grid-template-areas:
+    "method portrait identity"
+    "match portrait about"
+    "match portrait contact";
+  gap: 18px;
+  align-items: stretch;
+}
+
+.home-map__stage--sketch{
+  min-height: 740px;
+  grid-template-columns: 1fr 1.5fr 1fr;
+  grid-template-areas:
+    "about portrait projects"
+    "method portrait contact";
+  gap: 8px 26px;
+  align-items:center;
+  padding: 34px 30px 24px;
+  border: 2px solid #121212;
+  background: linear-gradient(180deg, #cfcfcf, #bebebe);
+}
+
+.home-link{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding: 20px 10px;
+  color: #111111;
+  transition: transform .18s ease, opacity .18s ease;
+}
+
+.home-link:hover{
+  transform: translateY(-3px);
+  opacity: .92;
+}
+
+.home-link h2{
+  margin:0 0 8px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(34px, 3.2vw, 60px);
+  line-height: .94;
+  text-transform: uppercase;
+  letter-spacing: .02em;
+  font-weight: 800;
+}
+
+.home-link span{
+  display:block;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(16px, 1.2vw, 22px);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: rgba(17,17,17,.9);
+  font-weight: 700;
+}
+
+.home-link--about{ grid-area: about; }
+.home-link--projects{ grid-area: projects; }
+.home-link--method{ grid-area: method; }
+.home-link--contact{ grid-area: contact; }
+
+.home-portrait{
+  grid-area: portrait;
+  position:relative;
+  min-width: 0;
+}
+
+.home-portrait--giant{
+  min-height: 840px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  padding: 0 0 6px;
+  background:
+    radial-gradient(380px 260px at 50% 12%, rgba(255,255,255,.85), transparent 68%),
+    radial-gradient(700px 420px at 50% 60%, rgba(215,181,102,.15), transparent 74%);
+}
+
+.home-portrait--giant img{
+  width: min(100%, 1080px);
+  height: auto;
+  display:block;
+  position:relative;
+  z-index:1;
+  mix-blend-mode: multiply;
+  filter: contrast(1.06) saturate(.98);
+}
+
+.home-portrait__badge{
+  position:absolute;
+  top: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index:2;
+  padding: 10px 18px;
+  border-radius:999px;
+  border:1px solid rgba(17,17,17,.14);
+  background: rgba(255,255,255,.32);
+  color: rgba(17,17,17,.86);
+  font-size: 14px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.home-portrait__caption{
+  position:absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index:2;
+  margin:0;
+  text-align:center;
+  font-size: 14px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(17,17,17,.72);
+  white-space: nowrap;
+}
+
+.home-band{
+  width: min(1700px, 95vw);
+  margin: 0 auto 0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height: 110px;
+  padding: 18px 24px;
+  border-left: 2px solid #121212;
+  border-right: 2px solid #121212;
+  border-bottom: 2px solid #121212;
+  background: linear-gradient(180deg, #cfcfcf, #c7c7c7);
+  color: #111111;
+  text-align:center;
+}
+
+.home-band strong{
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(18px, 1.45vw, 28px);
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+/* =========
+   IDENTITY PAGE
+========= */
+.identity-page{
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  padding: 14px 0 26px;
+}
+
+.identity-page__top{
+  width: min(1400px, 95vw);
+  margin-left: auto;
+  margin-right: auto;
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.identity-page__top > *{
+  min-width: 0;
+}
+
+.identity-page__eyebrow{
+  display:inline-block;
+  margin-bottom: 8px;
+  color: rgba(242,244,248,.58);
+  font-size: 12px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.identity-page h1{
+  margin:0;
+  font-size: clamp(34px, 5vw, 62px);
+  line-height: .96;
+  letter-spacing: -.02em;
+}
+
+.identity-page__intro{
+  width: min(1400px, 95vw);
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 18px;
+  padding: 18px 22px;
+  border:1px solid rgba(255,255,255,.10);
+  border-radius: 22px;
+  background:
+    linear-gradient(180deg, rgba(15,24,40,.86), rgba(9,14,25,.80));
+}
+
+.identity-points{
+  margin:0;
+  padding-left: 20px;
+  color: var(--text);
+}
+
+.identity-points li{
+  margin: 10px 0;
+  color: var(--muted);
+}
+
+.identity-grid{
+  width: min(1400px, 95vw);
+  margin: 0 auto;
+  display:grid;
+  grid-template-columns: 1.15fr .85fr;
+  gap: 16px;
+}
+
+.identity-grid > *{
+  min-width: 0;
+}
+
+.identity-card{
+  padding: 20px 22px;
+  border:1px solid rgba(255,255,255,.10);
+  border-radius: 24px;
+  background: rgba(255,255,255,.03);
+  min-width: 0;
+}
+
+.identity-card__label{
+  display:inline-block;
+  margin-bottom: 12px;
+  color: rgba(242,244,248,.55);
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.identity-card h2{
+  margin:0 0 10px;
+  font-size: clamp(24px, 2.8vw, 34px);
+  line-height: 1;
+}
+
+.identity-card p{
+  color: var(--muted);
+}
+
+.identity-list{
+  margin:0;
+  padding-left: 18px;
+  color: var(--muted);
+}
+
+.identity-list li{
+  margin: 10px 0;
+}
+
+.identity-card--experience{
+  grid-row: span 2;
+}
+
+.identity-summary{
+  width: min(1400px, 95vw);
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 16px;
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap: 18px;
+  padding: 18px 22px;
+  border:1px solid rgba(255,255,255,.10);
+  border-radius: 22px;
+  background:
+    linear-gradient(180deg, rgba(15,24,40,.90), rgba(9,14,25,.82));
+}
+
+.identity-summary > *{
+  min-width: 0;
+}
+
+.identity-summary h2{
+  margin:0 0 8px;
+  font-size: clamp(24px, 2.8vw, 34px);
+  line-height: 1;
+}
+
+.identity-summary p{
+  margin:0;
+  color: var(--muted);
+  max-width: 72ch;
+}
+
+@media (max-width: 1180px){
+  .home-map__stage--sketch{
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "portrait"
+      "about"
+      "projects"
+      "method"
+      "contact";
+  }
+
+  .home-portrait--giant{
+    min-height: 620px;
+  }
+
+  .home-portrait__caption{
+    white-space: normal;
+    width: 90%;
+  }
+}
+
+@media (max-width: 900px){
+  .home-map__footer,
+  .identity-page__top,
+  .identity-summary{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .identity-grid{
+    grid-template-columns: 1fr;
+  }
+
+  .identity-card--experience{
+    grid-row: auto;
+  }
+}

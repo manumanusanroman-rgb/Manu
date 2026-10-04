@@ -1,44 +1,162 @@
 {% extends "base.html" %}
-{% block title %}Inicio | Manu Sanroman{% endblock %}
-
+{% block title %}Manuel Sanromán | Coaching · Scouting · Player Development{% endblock %}
 {% block content %}
+{# HOME · Manuel Sanromán — rutas ya calzadas a tu base.html.
+   Figura: /static/FOTOS/MANU_FIGURE.png
+   El acceso 02 "Proyectos" apunta a /partidos (tu Match Center). Si luego creas /proyectos, cámbialo. #}
 
-<section class="hero-full">
-  <div class="hero-inner">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600&display=swap');
 
-    <!-- IZQUIERDA -->
-    <div class="hero-left">
-      <h1 class="hero-title">
-        Player Development <span class="hero-sep">—</span> Performance Systems
-      </h1>
+.msr-home{
+  --hueso:#F3EFE6; --hueso2:#EEE8DB; --ink:#1A1916; --gold:#B9975B;
+  --plat:#9A958A; --soft:#8A857A; --hair:#CBBB8E; --line:#DBD5C6;
+  width:100vw; margin-left:calc(50% - 50vw);      /* rompe cualquier contenedor de base.html */
+  background:var(--hueso); color:var(--ink);
+  font-family:'Archivo',system-ui,-apple-system,sans-serif;
+  overflow:hidden;
+}
+.msr-home *{ box-sizing:border-box; }
 
-      <p>
-        Desarrollo técnico estructurado basado en ciencia del aprendizaje,
-        formación de patrones motores y toma de decisiones aplicadas al juego real.
-      </p>
+/* ── INTEGRACIÓN CON base.html ──
+   En la home: oculta la nav y el footer oscuros de la base y deja el hueso a pantalla completa.
+   (Los 4 accesos hacen de navegación.) En el resto de páginas tu base.html no se toca. */
+body:has(.msr-home){ background:#F3EFE6; }
+body:has(.msr-home) > header.nav,
+body:has(.msr-home) > footer.footer{ display:none; }
+body:has(.msr-home) main.container{ max-width:none; width:100%; padding:0; margin:0; }
+/* blindaje contra estilos globales de tu styles.css */
+.msr-home img.msr-figure{ max-width:none !important; }
+.msr-home h1.msr-name{ margin:0 !important; }
+html,body{ overflow-x:hidden; }
 
-      <div class="hero-kicker">
-        Football · Analysis · Operations
-      </div>
-    </div>
+/* ── barra superior ── */
+.msr-topbar{ display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:8px 24px; padding:20px clamp(20px,4vw,44px); }
+.msr-brand{ font-family:'Anton',sans-serif; font-size:20px; letter-spacing:.04em; color:var(--ink); text-decoration:none; }
+.msr-brand i{ color:var(--gold); font-style:normal; }
+.msr-loc{ font-size:11px; letter-spacing:.28em; color:var(--plat); text-transform:uppercase; }
 
-    <!-- CENTRO -->
-    <div class="hero-center">
-      <div class="hero-name-top">MANUEL SANROMAN FERNANDEZ</div>
-      <img class="hero-photo" src="/static/FOTOS/MANU.jpeg" alt="Manuel Sanroman Fernandez">
-    </div>
+/* ── escenario (figura + nombre + accesos) ── */
+.msr-stage{ position:relative; max-width:1120px; margin:0 auto; height:clamp(560px,78vh,780px); }
 
-    <!-- DERECHA (ÚNICO LUGAR DE BOTONES) -->
-    <div class="hero-right">
-      <div class="hero-ctas">
-        <a class="btn" href="/contacto">Trabajemos</a>
-        <a class="btn secondary" href="/sobre-mi">¿Quién soy?</a>
-        <a class="btn secondary" href="/metodologia">¿Cómo lo hago?</a>
-        <a class="btn secondary" href="/partidos">Match Center</a>
-      </div>
-    </div>
+.msr-kicker{
+  flex:1 1 auto; margin:0; text-align:center; white-space:nowrap;
+  font-size:clamp(10px,1vw,12px); letter-spacing:.2em; color:var(--soft); text-transform:uppercase;
+}
+.msr-name{
+  position:absolute; top:0; left:0; right:0; z-index:1; text-align:center;
+  font-family:'Anton',sans-serif; line-height:.82;
+  animation:msr-rise .7s ease both;
+}
+.msr-name span{ display:block; font-size:clamp(40px,7.5vw,84px); letter-spacing:.01em; }
+.msr-name .l1{ color:var(--ink); }
+.msr-name .l2{ color:var(--gold); }
 
+.msr-figure{
+  position:absolute; left:50%; bottom:0; transform:translateX(-50%);
+  height:clamp(340px,56vh,560px); width:auto; z-index:2; pointer-events:none;
+  filter:drop-shadow(0 18px 30px rgba(26,25,22,.12));
+  animation:msr-fade .9s ease both;
+}
+
+/* ── 4 accesos como anotaciones editoriales ── */
+.msr-nav .acc{ position:absolute; z-index:3; text-decoration:none; display:block; }
+.acc .num{ display:block; font-family:'Anton',sans-serif; font-size:24px; color:var(--gold); }
+.acc .es{ display:block; margin-top:4px; font-weight:500; font-size:18px; letter-spacing:.16em; text-transform:uppercase; color:var(--ink); transition:color .18s,letter-spacing .18s; }
+.acc .en{ display:block; margin-top:2px; font-weight:400; font-size:14px; letter-spacing:.16em; text-transform:uppercase; color:var(--plat); }
+.acc::after{ content:""; display:block; width:58px; height:1px; background:var(--hair); margin-top:10px; transition:width .2s; }
+.acc:hover .es,.acc:focus-visible .es{ color:var(--gold); letter-spacing:.22em; }
+.acc:hover::after,.acc:focus-visible::after{ width:80px; }
+.acc:focus-visible{ outline:2px solid var(--gold); outline-offset:6px; }
+
+.a01{ top:23%; left:3%; }
+.a02{ top:30%; right:3%; text-align:right; }
+.a03{ bottom:15%; left:3%; }
+.a04{ bottom:8%;  right:3%; text-align:right; }
+.a02::after,.a04::after{ margin-left:auto; }
+
+/* ── franja de medios ── */
+.msr-media{ background:var(--hueso2); border-top:1px solid var(--line); padding:18px clamp(20px,4vw,44px) 26px; }
+.msr-media-head{ display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
+.msr-media-head span{ font-size:11px; letter-spacing:.28em; color:var(--soft); text-transform:uppercase; }
+.msr-media-head a{ font-size:11px; letter-spacing:.2em; color:var(--gold); text-decoration:none; text-transform:uppercase; }
+.msr-media-row{ display:grid; grid-template-columns:repeat(5,1fr); gap:12px; }
+.tile{ aspect-ratio:16/10; border-radius:8px; background:#D8D2C4; display:flex; align-items:center; justify-content:center; }
+.tile.dark{ background:#26251F; color:#E8E2D4; }
+.tile.outline{ background:#DAD4C6; border:1px solid var(--hair); }
+.tile svg{ width:26px; height:26px; }
+
+@keyframes msr-rise{ from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:none;} }
+@keyframes msr-fade{ from{opacity:0;} to{opacity:1;} }
+
+/* ── responsive: en móvil se apila limpio ── */
+@media (max-width:880px){
+  .msr-stage{ position:static; height:auto; padding:8px 0 6px; }
+  .msr-kicker{ order:9; flex-basis:100%; white-space:normal; text-align:center; }
+  .msr-name{ position:static; animation:none; }
+  .msr-name span{ font-size:clamp(44px,15vw,84px); }
+  .msr-figure{ position:static; display:block; margin:-6px auto 0; transform:none; height:auto; width:min(74vw,320px); animation:none; }
+  .msr-nav{ display:grid; grid-template-columns:1fr 1fr; gap:20px 16px; padding:18px clamp(24px,8vw,40px) 4px; }
+  .msr-nav .acc{ position:static; text-align:left; }
+  .a02,.a04{ text-align:left; }
+  .a02::after,.a04::after{ margin-left:0; }
+  .msr-media-row{ grid-template-columns:repeat(3,1fr); }
+  .msr-media-row .tile:nth-child(n+4){ display:none; }
+}
+
+@media (prefers-reduced-motion:reduce){
+  .msr-name,.msr-figure{ animation:none; }
+}
+</style>
+
+<section class="msr-home">
+
+  <div class="msr-topbar">
+    <a class="msr-brand" href="/">MSR<i>.</i></a>
+    <p class="msr-kicker">Coaching · Scouting · Player Development · Operations</p>
+    <span class="msr-loc">Monterrey · MX</span>
   </div>
-</section>
 
+  <div class="msr-stage">
+    <h1 class="msr-name">
+      <span class="l1">MANUEL</span>
+      <span class="l2">SANROMÁN</span>
+    </h1>
+
+    <img class="msr-figure" src="/static/FOTOS/MANU_FIGURE.png" alt="Manuel Sanromán">
+
+    <nav class="msr-nav" aria-label="Secciones principales">
+      <a class="acc a01" href="/sobre-mi">
+        <span class="num">01</span><span class="es">Quién soy</span><span class="en">About</span>
+      </a>
+      <a class="acc a02" href="/partidos">
+        <span class="num">02</span><span class="es">Proyectos</span><span class="en">Projects</span>
+      </a>
+      <a class="acc a03" href="/metodologia">
+        <span class="num">03</span><span class="es">Metodología</span><span class="en">Methodology</span>
+      </a>
+      <a class="acc a04" href="/contacto">
+        <span class="num">04</span><span class="es">Contáctame</span><span class="en">Contact</span>
+      </a>
+    </nav>
+  </div>
+
+  <div class="msr-media">
+    <div class="msr-media-head">
+      <span>Media · Galería</span>
+      <a href="/partidos">Ver todo →</a>
+    </div>
+    <div class="msr-media-row">
+      {# Reemplaza estos tiles por fotos/videos reales cuando quieras #}
+      <div class="tile"></div>
+      <div class="tile dark">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+      </div>
+      <div class="tile"></div>
+      <div class="tile dark" style="background:#4A4840"></div>
+      <div class="tile outline"></div>
+    </div>
+  </div>
+
+</section>
 {% endblock %}
