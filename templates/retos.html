@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block content %}
+{% set r = t.retos %}
+
+<section class="wrap page-head">
+  <p class="kicker">{{ r.kicker }}</p>
+  <h1 class="display">{{ r.title }}</h1>
+  <p class="lead">{{ r.lead }}</p>
+  <div class="hero-buttons">
+    <a class="btn btn-dark" href="{{ retos_app_url }}" rel="noopener" target="_blank">{{ r.app_button }}</a>
+  </div>
+</section>
+
+<section class="wrap prose-grid" style="padding-bottom: 80px">
+  <div class="callout">
+    <h3>{{ r.problem_title }}</h3>
+    <p>{{ r.problem }}</p>
+  </div>
+  <div class="callout">
+    <h3>{{ r.idea_title }}</h3>
+    <p>{{ r.idea }}</p>
+  </div>
+</section>
+
+<div class="band">
+  <section class="wrap section">
+    <div class="section-head"><h2 class="display">{{ r.steps_title }}</h2></div>
+    <ol class="steps" style="list-style: none; margin: 0; padding: 0">
+      {% for title, text in r.steps %}
+      <li class="step">
+        <span class="num">0{{ loop.index }}</span>
+        <h3>{{ title }}</h3>
+        <p>{{ text }}</p>
+      </li>
+      {% endfor %}
+    </ol>
+  </section>
+</div>
+
+{% if retos_video %}
+<section class="wrap section">
+  <div class="section-head"><h2 class="display">{{ r.video_title }}</h2></div>
+  <div class="video-frame">
+    <iframe src="{{ retos_video }}" title="{{ r.video_title }}" loading="lazy" allowfullscreen></iframe>
+  </div>
+</section>
+{% endif %}
+
+<section class="wrap section">
+  <div class="prose-grid">
+    <div class="section-head">
+      <h2 class="display">{{ r.built_title }}</h2>
+      <p>{{ r.built_note }}</p>
+    </div>
+    <ul class="check-list">{% for b in r.built %}<li>{{ b }}</li>{% endfor %}</ul>
+  </div>
+</section>
+
+<div class="band">
+  <section class="wrap section">
+    <div class="section-head"><h2 class="display">{{ r.facts_title }}</h2></div>
+    <div class="facts">
+      {% for value, label in r.facts %}
+      <div class="fact"><strong>{{ value }}</strong><span>{{ label }}</span></div>
+      {% endfor %}
+    </div>
+  </section>
+</div>
+
+{% endblock %}

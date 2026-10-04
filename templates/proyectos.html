@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+{% set pr = t.projects %}
+
+<section class="wrap page-head">
+  <p class="kicker">{{ pr.kicker }}</p>
+  <h1 class="display">{{ pr.title }}</h1>
+  <p class="lead">{{ pr.lead }}</p>
+</section>
+
+<section class="wrap" style="padding-bottom: 96px; display: flex; flex-direction: column; gap: 24px">
+  {% for item in pr.entries %}
+  <a class="project-card" href="{{ urls[item.key] }}">
+    <img src="/static/img/manu-toques.jpg" alt="" width="768" height="1024" loading="lazy">
+    <div class="body">
+      <h2>{{ item.title }}</h2>
+      <p>{{ item.text }}</p>
+      <span class="text-link" style="text-decoration: underline">{{ pr.more }}</span>
+    </div>
+  </a>
+  {% endfor %}
+</section>
+
+{% endblock %}

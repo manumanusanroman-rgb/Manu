@@ -1,164 +1,67 @@
 {% extends "base.html" %}
-{% block title %}Quién soy | Manu Sanroman{% endblock %}
-
 {% block content %}
-<section class="identity-page">
-  <div class="identity-page__top">
-    <div>
-      <span class="identity-page__eyebrow">Sobre mí</span>
-      <h1>Quién soy</h1>
+{% set a = t.about %}
+
+<section class="wrap page-head">
+  <p class="kicker">{{ a.kicker }}</p>
+  <h1 class="display">{{ a.title }}</h1>
+</section>
+
+<section class="wrap prose-grid" style="padding-bottom: 80px">
+  <div class="prose">
+    {% for paragraph in a.intro %}<p>{{ paragraph }}</p>{% endfor %}
+    <div class="hero-buttons">
+      {% if cv_url %}<a class="btn btn-dark" href="{{ cv_url }}" download>{{ a.cv_button }}</a>{% endif %}
+      <a class="btn btn-line" href="{{ urls.contact }}">{{ t.cta_button }}</a>
     </div>
-
-    <button id="aboutLangToggle" class="btn secondary" type="button">English</button>
   </div>
+  <figure class="about-photo" style="margin:0">
+    <img src="/static/img/staff-estadio.jpg" alt="{{ a.photo_alt }}" width="1519" height="1204" loading="lazy">
+  </figure>
+</section>
 
-  <div class="identity-page__intro">
-    <div class="identity-copy" data-lang="es">
-      <ul class="identity-points">
-        <li>He vivido y entrenado en México, Estados Unidos y España.</li>
-        <li>He aprendido de distintas culturas y metodologías de trabajo.</li>
-        <li>Entiendo el video y el análisis como herramientas al servicio del desarrollo.</li>
-        <li>Busco unir estructura, adaptabilidad y sensibilidad de campo en un mismo perfil.</li>
+<div class="band">
+  <section class="wrap section">
+    <div class="section-head">
+      <h2 class="display">{{ a.experience_title }}</h2>
+    </div>
+    <div class="timeline">
+      {% for job in a.experience %}
+      <article class="job">
+        <div>
+          <p class="when">{{ job.when }}</p>
+          <p class="where">{{ job.where }}</p>
+        </div>
+        <div>
+          <h3>{{ job.role }}</h3>
+          <p class="org">{{ job.org }}</p>
+          <ul>{% for point in job.points %}<li>{{ point }}</li>{% endfor %}</ul>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+</div>
+
+<section class="wrap section">
+  <div class="cards-3">
+    <div class="card">
+      <h3>{{ a.education_title }}</h3>
+      <ul>
+        {% for e in a.education %}
+        <li><span class="item-title">{{ e.title }}</span><br><span class="item-sub">{{ e.org }} · {{ e.when }}</span></li>
+        {% endfor %}
       </ul>
     </div>
-
-    <div class="identity-copy" data-lang="en" hidden>
-      <ul class="identity-points">
-        <li>I have lived and coached in Mexico, the United States, and Spain.</li>
-        <li>I have learned from different football cultures and working methods.</li>
-        <li>I use video and analysis as tools that serve player development.</li>
-        <li>I aim to combine structure, adaptability, and real field sensitivity in one profile.</li>
-      </ul>
+    <div class="card">
+      <h3>{{ a.certs_title }}</h3>
+      <ul>{% for c in a.certs %}<li>{{ c }}</li>{% endfor %}</ul>
     </div>
-  </div>
-
-  <div class="identity-grid">
-    <article class="identity-card identity-card--experience">
-      <span class="identity-card__label">Experience</span>
-
-      <div class="identity-copy" data-lang="es">
-        <h2>Experiencia</h2>
-        <p>
-          Mi perfil nace desde la combinación entre cancha, observación y estructura.
-          No me interesa solo dirigir una sesión; me interesa entender cómo se desarrolla
-          un jugador, cómo se sostiene un entorno y cómo se convierte el trabajo diario en rendimiento.
-        </p>
-        <p>
-          He construido mi forma de trabajar entre contextos distintos, aprendiendo a adaptarme
-          a otras culturas, otros ritmos y otras formas de entender el fútbol.
-          Eso me ha llevado a valorar tanto la metodología como la capacidad de leer personas,
-          necesidades y momentos.
-        </p>
-      </div>
-
-      <div class="identity-copy" data-lang="en" hidden>
-        <h2>Experience</h2>
-        <p>
-          My profile comes from the combination of field work, observation, and structure.
-          I am not only interested in running a session; I am interested in understanding
-          how a player develops, how an environment is sustained, and how daily work becomes performance.
-        </p>
-        <p>
-          I have built my way of working across different contexts, learning to adapt to
-          other cultures, other rhythms, and other ways of understanding football.
-          That has made me value methodology, but also the ability to read people, needs, and timing.
-        </p>
-      </div>
-    </article>
-
-    <article class="identity-card identity-card--education">
-      <span class="identity-card__label">Education</span>
-
-      <div class="identity-copy" data-lang="es">
-        <h2>Educación y formación</h2>
-        <ul class="identity-list">
-          <li>Máster en <strong>Sport Big Data</strong> - Universidad Europea / Real Madrid Graduate School.</li>
-          <li>Licenciatura en <strong>Sports Business Administration</strong> - Stephen F. Austin State University.</li>
-          <li>Formación continua en metodología, análisis de juego, desarrollo individual y scouting.</li>
-        </ul>
-      </div>
-
-      <div class="identity-copy" data-lang="en" hidden>
-        <h2>Education and development</h2>
-        <ul class="identity-list">
-          <li>Master in <strong>Sport Big Data</strong> - Universidad Europea / Real Madrid Graduate School.</li>
-          <li>Bachelor's degree in <strong>Sports Business Administration</strong> - Stephen F. Austin State University.</li>
-          <li>Continuous learning in methodology, game analysis, individual development, and scouting.</li>
-        </ul>
-      </div>
-    </article>
-
-    <article class="identity-card identity-card--extra">
-      <span class="identity-card__label">Additional</span>
-
-      <div class="identity-copy" data-lang="es">
-        <h2>Información adicional</h2>
-        <ul class="identity-list">
-          <li>Bilingüe: español e inglés.</li>
-          <li>Interés especial en player development, video analysis y performance support.</li>
-          <li>Me adapto bien a academias, staff pequeños y proyectos en crecimiento.</li>
-          <li>Valoro la claridad, la consistencia y la buena comunicación dentro del día a día.</li>
-        </ul>
-      </div>
-
-      <div class="identity-copy" data-lang="en" hidden>
-        <h2>Additional information</h2>
-        <ul class="identity-list">
-          <li>Bilingual: Spanish and English.</li>
-          <li>Strong interest in player development, video analysis, and performance support.</li>
-          <li>I adapt well to academies, small staffs, and growing projects.</li>
-          <li>I value clarity, consistency, and good communication in daily work.</li>
-        </ul>
-      </div>
-    </article>
-  </div>
-
-  <div class="identity-summary">
-    <div class="identity-copy" data-lang="es">
-      <h2>Lo que aporto</h2>
-      <p>
-        Aporto una mezcla de metodología, sensibilidad de campo y pensamiento analítico.
-        Me interesa ayudar a que el jugador mejore, pero también que el entorno funcione mejor:
-        sesiones más claras, seguimiento más útil y procesos más ordenados.
-      </p>
-    </div>
-
-    <div class="identity-copy" data-lang="en" hidden>
-      <h2>What I bring</h2>
-      <p>
-        I bring a blend of methodology, field sensitivity, and analytical thinking.
-        I care about helping the player improve, but also about helping the environment work better:
-        clearer sessions, more useful monitoring, and more organized processes.
-      </p>
-    </div>
-
-    <div class="buttons">
-      <a class="btn" href="/metodologia">Ver metodología</a>
-      <a class="btn secondary" href="/contacto">Contactarme</a>
+    <div class="card">
+      <h3>{{ a.languages_title }}</h3>
+      <p>{{ a.languages }}</p>
     </div>
   </div>
 </section>
 
-<script>
-(function () {
-  const toggle = document.getElementById("aboutLangToggle");
-  const blocks = Array.from(document.querySelectorAll(".identity-copy"));
-
-  function setLang(lang) {
-    blocks.forEach((block) => {
-      block.hidden = block.dataset.lang !== lang;
-    });
-    toggle.textContent = lang === "es" ? "English" : "Español";
-    localStorage.setItem("identity_lang", lang);
-  }
-
-  const saved = localStorage.getItem("identity_lang");
-  setLang(saved === "en" ? "en" : "es");
-
-  toggle.addEventListener("click", function () {
-    const current = localStorage.getItem("identity_lang") === "en" ? "en" : "es";
-    setLang(current === "es" ? "en" : "es");
-  });
-})();
-</script>
 {% endblock %}

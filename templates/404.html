@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block robots %}<meta name="robots" content="noindex">{% endblock %}
+{% block cta %}{% endblock %}
+{% block content %}
+<section class="wrap page-head" style="padding-bottom: 120px">
+  <p class="kicker">404</p>
+  <h1 class="display">{{ t.not_found }}</h1>
+  <div><a class="btn btn-dark" href="{{ urls.home }}">{{ t.back_home }}</a></div>
+</section>
+{% endblock %}

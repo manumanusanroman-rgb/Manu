@@ -1,50 +1,57 @@
 {% extends "base.html" %}
-{% block title %}Contacto{% endblock %}
-
+{% block cta %}{% endblock %}
 {% block content %}
-<section class="hero reveal">
-  <h1>Contacto</h1>
-  <p>
-    Si tienes una propuesta deportiva, académica o de colaboración,
-    puedes contactarme por los siguientes medios.
-  </p>
+{% set c = t.contact %}
+
+<section class="wrap page-head">
+  <p class="kicker">{{ c.kicker }}</p>
+  <h1 class="display">{{ c.title }}</h1>
+  <p class="lead">{{ c.lead }}</p>
 </section>
 
-<div class="section-title">Información de contacto</div>
+<section class="wrap contact-grid">
+  <div class="contact-info">
+    <div>
+      <p class="label">{{ c.email_label }}</p>
+      <a href="mailto:{{ email }}">{{ email }}</a>
+    </div>
+    <div>
+      <p class="label">{{ c.linkedin_label }}</p>
+      <a href="{{ linkedin }}" rel="noopener" target="_blank">linkedin.com/in/manusanromanfdz</a>
+    </div>
+  </div>
 
-<section class="cards">
-  <article class="card">
-    <h3>📧 Correo electrónico</h3>
-    <p>
-      Escríbeme directamente a:<br/>
-      <strong>manumanusanroman@gmail.com</strong>
-    </p>
-  </article>
+  <form class="form" method="post" action="{{ urls.contact }}">
+    {% if sent %}
+    <p class="notice notice-ok" role="status">{{ c.sent }}</p>
+    {% elif error == "invalid" %}
+    <p class="notice notice-error" role="alert">{{ c.invalid }}</p>
+    {% elif error == "send" %}
+    <p class="notice notice-error" role="alert">{{ c.error }} <a href="mailto:{{ email }}">{{ email }}</a>.</p>
+    {% endif %}
 
-  <article class="card">
-    <h3>📱 WhatsApp</h3>
-    <p>
-      Mensaje directo:<br/>
-      <strong>+1 8328537600</strong>
-    </p>
-  </article>
-
-  <article class="card">
-    <h3>⚽ Perfil deportivo</h3>
-    <p>
-      También puedes ver mi trabajo en partidos y estadísticas dentro de esta web.
-    </p>
-  </article>
+    <div class="field">
+      <label for="name">{{ c.name }}</label>
+      <input id="name" name="name" type="text" autocomplete="name" required maxlength="120" value="{{ form.name if form else '' }}">
+    </div>
+    <div class="field">
+      <label for="email">{{ c.email }}</label>
+      <input id="email" name="email" type="email" autocomplete="email" required maxlength="200" value="{{ form.email if form else '' }}">
+    </div>
+    <div class="field">
+      <label for="org">{{ c.org }}</label>
+      <input id="org" name="org" type="text" autocomplete="organization" maxlength="200" value="{{ form.org if form else '' }}">
+    </div>
+    <div class="field">
+      <label for="message">{{ c.message }}</label>
+      <textarea id="message" name="message" required maxlength="5000">{{ form.message if form else '' }}</textarea>
+    </div>
+    <div class="trap" aria-hidden="true">
+      <label for="website">Website</label>
+      <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+    </div>
+    <div><button class="btn btn-dark" type="submit">{{ c.send }}</button></div>
+  </form>
 </section>
 
-<div class="section-title">Mensaje</div>
-
-<section class="cards">
-  <article class="card">
-    <p style="color: var(--muted);">
-      Este proyecto muestra el trabajo técnico, organización de partidos y análisis de rendimiento.
-      Está pensado para clubes, academias o proyectos deportivos interesados en propuestas formales.
-    </p>
-  </article>
-</section>
 {% endblock %}
