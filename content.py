@@ -216,7 +216,7 @@ TEXT = {
                 ("Como entrenador", "Revisa los vídeos pendientes, califica uno con estrellas y observaciones, y mira el panel con las estadísticas del equipo."),
             ],
             "demo_note": "Todos los nombres, calificaciones y vídeos son ficticios; los vídeos se muestran como imágenes de muestra. No se guarda ningún dato y la demo se reinicia cada 24 horas.",
-            "demo_button": "Probar la demo",
+            "demo_button": "Probar la app",
         },
         "scouting": {
             "kicker": "Proyecto · Máster en Big Data Deportivo",
@@ -440,7 +440,7 @@ TEXT = {
                 ("As a coach", "Review pending videos, grade one with stars and notes, and check the dashboard with team stats."),
             ],
             "demo_note": "All names, grades, and videos are made up; demo videos appear as sample images. Nothing is saved, and the demo resets every 24 hours.",
-            "demo_button": "Try the demo",
+            "demo_button": "Try the app",
         },
         "scouting": {
             "kicker": "Project · Master's in Sports Big Data",
