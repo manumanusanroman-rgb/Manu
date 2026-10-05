@@ -317,7 +317,7 @@ TEXT = {
                 "Youth football coach. I played in Mexico (Cruz Azul U-11), the United States (Texas Rush) and Spain (Mareo camps, Sporting de Gijón), so I know three different ways of understanding football.",
                 "I've coached since I was 15. At Houston Dutch Lions I coached players aged 4 to 18, contributed to the club's methodology (small spaces and ball progression) and launched its individual training programme. I'm in my third season in the Rayados academy with the U-10 group.",
                 "I created the Skills Challenge so players keep improving their technique at home. I hold a Master's in Sports Big Data from Real Madrid Graduate School and work in Spanish and English.",
-                "I'm looking to become an academy's methodologist: deciding what is trained, when and why.",
+                "My next step is Head of Methodology at an academy: deciding what is trained, when and why.",
             ],
             "photo_alt": "Rayados coaching staff at Estadio BBVA",
             "experience_title": "Experience",
