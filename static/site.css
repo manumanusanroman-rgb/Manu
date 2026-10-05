@@ -275,6 +275,11 @@ h1, h2, h3, p { margin: 0; }
 .prose-grid .facts { gap: 20px; }
 .prose-grid .fact strong { font-size: 36px; }
 
+.demo-roles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.demo-role { border: 1px solid #3A3B42; padding: 28px; display: flex; flex-direction: column; gap: 10px; }
+.demo-role h3 { font-family: var(--serif); font-weight: 500; font-size: 26px; color: var(--gold-on-dark); }
+.demo-role p { color: var(--on-dark-muted); }
+
 .video-frame { position: relative; aspect-ratio: 16 / 9; background: var(--dark); }
 .video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 
@@ -321,7 +326,7 @@ h1, h2, h3, p { margin: 0; }
   .feature { padding-block: 64px; gap: 32px; }
   .cta { padding-block: 72px; }
   .page-head { padding-block: 48px 32px; }
-  .steps, .facts, .check-list { grid-template-columns: minmax(0, 1fr); }
+  .steps, .facts, .check-list, .demo-roles { grid-template-columns: minmax(0, 1fr); }
   .job { grid-template-columns: minmax(0, 1fr); gap: 8px; }
   .story-grid { grid-template-columns: minmax(0, 1fr); gap: 40px; }
   .story-photos { position: static; }

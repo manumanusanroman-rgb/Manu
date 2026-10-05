@@ -15,7 +15,7 @@ import content
 
 BASE_DIR = Path(__file__).resolve().parent
 SITE_URL = "https://msanroman.com"
-ASSET_VERSION = "20261004"
+ASSET_VERSION = "20261005"
 LANGS = ("es", "en")
 LANG_COOKIE = "lang"
 

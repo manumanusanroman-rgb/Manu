@@ -208,6 +208,15 @@ TEXT = {
             "facts": [("~15", "jugadores en la edición actual"), ("Sep 2026", "inicio de la edición actual"), ("100 %", "idea propia")],
             "video_title": "Recorrido por la app",
             "app_button": "Abrir la app",
+            "demo_kicker": "Demo",
+            "demo_title": "Prueba la app sin registrarte",
+            "demo_lead": "Entra a la demo desde la pantalla de inicio de sesión y explora la app con datos de ejemplo.",
+            "demo_roles": [
+                ("Como jugador", "Revisa el inicio con tu racha, las tareas del entrenador, los retos para repetir, los destacados, el jugador de la semana y los mensajes del entrenador. También puedes subir un vídeo de práctica y ver cómo queda pendiente de calificación."),
+                ("Como entrenador", "Revisa los vídeos pendientes, califica uno con estrellas y observaciones, y mira el panel con las estadísticas del equipo."),
+            ],
+            "demo_note": "Todos los nombres, calificaciones y vídeos son ficticios; los vídeos se muestran como imágenes de muestra. No se guarda ningún dato y la demo se reinicia cada 24 horas.",
+            "demo_button": "Probar la demo",
         },
         "scouting": {
             "kicker": "Proyecto · Máster en Big Data Deportivo",
@@ -423,6 +432,15 @@ TEXT = {
             "facts": [("~15", "players in the current round"), ("Sept 2026", "current round started"), ("100%", "my own idea")],
             "video_title": "App walkthrough",
             "app_button": "Open the app",
+            "demo_kicker": "Demo",
+            "demo_title": "Try the app without signing up",
+            "demo_lead": "Open the demo from the login screen and explore the app with sample data.",
+            "demo_roles": [
+                ("As a player", "See the home screen with your streak, tasks from the coach, challenges to redo, highlights, player of the week, and coach messages. You can also upload a practice video and see it waiting to be graded."),
+                ("As a coach", "Review pending videos, grade one with stars and notes, and check the dashboard with team stats."),
+            ],
+            "demo_note": "All names, grades, and videos are made up; demo videos appear as sample images. Nothing is saved, and the demo resets every 24 hours.",
+            "demo_button": "Try the demo",
         },
         "scouting": {
             "kicker": "Project · Master's in Sports Big Data",

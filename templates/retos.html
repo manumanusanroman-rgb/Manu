@@ -7,7 +7,8 @@
   <h1 class="display">{{ r.title }}</h1>
   <p class="lead">{{ r.lead }}</p>
   <div class="hero-buttons">
-    <a class="btn btn-dark" href="{{ retos_app_url }}" rel="noopener" target="_blank">{{ r.app_button }}</a>
+    <a class="btn btn-dark" href="#demo">{{ r.demo_button }}</a>
+    <a class="btn btn-line" href="{{ retos_app_url }}" rel="noopener" target="_blank">{{ r.app_button }}</a>
   </div>
 </section>
 
@@ -34,6 +35,26 @@
       </li>
       {% endfor %}
     </ol>
+  </section>
+</div>
+
+<div class="dark-band" id="demo">
+  <section class="wrap section">
+    <div class="section-head">
+      <p class="kicker" style="color: var(--gold-on-dark)">{{ r.demo_kicker }}</p>
+      <h2 class="display">{{ r.demo_title }}</h2>
+      <p style="color: var(--on-dark-muted)">{{ r.demo_lead }}</p>
+    </div>
+    <div class="demo-roles">
+      {% for role, text in r.demo_roles %}
+      <div class="demo-role">
+        <h3>{{ role }}</h3>
+        <p>{{ text }}</p>
+      </div>
+      {% endfor %}
+    </div>
+    <div><a class="btn btn-gold" href="{{ retos_app_url }}" rel="noopener" target="_blank">{{ r.demo_button }}</a></div>
+    <p class="note" style="color: var(--on-dark-muted)">{{ r.demo_note }}</p>
   </section>
 </div>
 
