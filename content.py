@@ -13,7 +13,7 @@ RETOS_APP_URL = "https://sanromanu.pythonanywhere.com"
 RETOS_VIDEO_EMBED = ""
 
 # Repositorio público del TFM. Vacío = no se muestra el botón "Ver el código".
-SCOUTING_REPO_URL = ""
+SCOUTING_REPO_URL = "https://github.com/manumanusanroman-rgb/rayados-scouting-lab"
 
 COUNTRIES = {
     "es": [
