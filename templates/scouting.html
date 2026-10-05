@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+{% set s = t.scouting %}
+
+<section class="wrap page-head">
+  <p class="kicker">{{ s.kicker }}</p>
+  <h1 class="display">{{ s.title }}</h1>
+  <p class="lead">{{ s.lead }}</p>
+  {% if scouting_repo_url %}
+  <div class="hero-buttons">
+    <a class="btn btn-dark" href="{{ scouting_repo_url }}" rel="noopener" target="_blank">{{ s.repo_button }}</a>
+  </div>
+  {% endif %}
+</section>
+
+<section class="wrap" style="padding-bottom: 80px">
+  <figure class="screenshot">
+    <img src="/static/img/scouting-lab-candidatos.jpg" alt="{{ s.image_main_alt }}" width="1280" height="616">
+  </figure>
+</section>
+
+<div class="band">
+  <section class="wrap section">
+    <div class="section-head"><h2 class="display">{{ s.steps_title }}</h2></div>
+    <ol class="steps" style="list-style: none; margin: 0; padding: 0">
+      {% for title, text in s.steps %}
+      <li class="step">
+        <span class="num">0{{ loop.index }}</span>
+        <h3>{{ title }}</h3>
+        <p>{{ text }}</p>
+      </li>
+      {% endfor %}
+    </ol>
+  </section>
+</div>
+
+<section class="wrap section">
+  <div class="prose-grid">
+    <figure class="screenshot">
+      <img src="/static/img/scouting-lab-adn.jpg" alt="{{ s.image_second_alt }}" width="1280" height="616" loading="lazy">
+    </figure>
+    <div class="section-head">
+      <h2 class="display">{{ s.facts_title }}</h2>
+      <div class="facts">
+        {% for value, label in s.facts %}
+        <div class="fact"><strong>{{ value }}</strong><span>{{ label }}</span></div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="band">
+  <section class="wrap section">
+    <div class="section-head"><h2 class="display">{{ s.stack_title }}</h2></div>
+    <ul class="check-list">{% for item in s.stack %}<li>{{ item }}</li>{% endfor %}</ul>
+    <p class="note">{{ s.note }}</p>
+  </section>
+</div>
+
+{% endblock %}

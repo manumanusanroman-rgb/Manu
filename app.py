@@ -32,6 +32,7 @@ PAGES = {
     "methodology": {"es": "/metodologia", "en": "/en/methodology", "template": "metodologia.html"},
     "projects": {"es": "/proyectos", "en": "/en/projects", "template": "proyectos.html"},
     "retos": {"es": "/proyectos/retos-de-habilidad", "en": "/en/projects/skills-challenge", "template": "retos.html"},
+    "scouting": {"es": "/proyectos/rayados-scouting-lab", "en": "/en/projects/rayados-scouting-lab", "template": "scouting.html"},
     "contact": {"es": "/contacto", "en": "/en/contact", "template": "contacto.html"},
 }
 KNOWN_PATHS = {p[lang] for p in PAGES.values() for lang in LANGS}
@@ -71,6 +72,7 @@ def page_context(request: Request, lang: str, page: str, **extra) -> dict:
         "linkedin": content.LINKEDIN,
         "retos_app_url": content.RETOS_APP_URL,
         "retos_video": content.RETOS_VIDEO_EMBED,
+        "scouting_repo_url": content.SCOUTING_REPO_URL,
         "cv_url": cv_url(lang),
         "asset_version": ASSET_VERSION,
         **extra,

@@ -35,7 +35,7 @@
       {% set nav_items = ["home", "about", "methodology", "projects", "contact"] %}
       <nav class="nav-desktop" aria-label="{{ t.menu }}">
         {% for key in nav_items %}
-        <a href="{{ urls[key] }}"{% if page == key or (key == 'projects' and page == 'retos') %} aria-current="page"{% endif %}>{{ t.nav[key] }}</a>
+        <a href="{{ urls[key] }}"{% if page == key or (key == 'projects' and page in ('retos', 'scouting')) %} aria-current="page"{% endif %}>{{ t.nav[key] }}</a>
         {% endfor %}
       </nav>
 

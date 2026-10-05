@@ -12,6 +12,9 @@ RETOS_APP_URL = "https://sanromanu.pythonanywhere.com"
 # de inserción (https://www.youtube.com/embed/XXXX). Vacío = la sección no se muestra.
 RETOS_VIDEO_EMBED = ""
 
+# Repositorio público del TFM. Vacío = no se muestra el botón "Ver el código".
+SCOUTING_REPO_URL = ""
+
 COUNTRIES = {
     "es": [
         {"people": "3,4 M", "name": "Uruguay", "fact": "2 Mundiales y 15 Copas América"},
@@ -52,6 +55,8 @@ TEXT = {
             "projects": ("Proyectos · Manu Sanroman", "Proyectos de desarrollo de jugadores creados por Manu Sanroman."),
             "retos": ("Retos de habilidad · Manu Sanroman",
                       "Un programa y una app para que el desarrollo técnico no termine al acabar el entrenamiento."),
+            "scouting": ("Rayados Scouting Lab · Manu Sanroman",
+                         "Herramienta de scouting y decisión deportiva desarrollada como proyecto final del Máster en Big Data Deportivo."),
             "contact": ("Contacto · Manu Sanroman", "Escríbeme para hablar de metodología, desarrollo de jugadores o colaboraciones."),
         },
         "home": {
@@ -170,8 +175,10 @@ TEXT = {
             "title": "Lo que he construido",
             "lead": "Herramientas y programas que nacen de una necesidad real del campo.",
             "entries": [
-                {"key": "retos", "title": "Retos de habilidad",
+                {"key": "retos", "title": "Retos de habilidad", "image": "manu-toques.jpg",
                  "text": "Un programa y una app para entrenar la técnica en casa con gestos de jugadores históricos."},
+                {"key": "scouting", "title": "Rayados Scouting Lab", "image": "scouting-lab-candidatos.jpg",
+                 "text": "Herramienta de scouting y decisión deportiva que desarrollé como proyecto final del Máster en Big Data Deportivo."},
             ],
             "more": "Ver proyecto",
         },
@@ -201,6 +208,25 @@ TEXT = {
             "facts": [("~15", "jugadores en la edición actual"), ("Sep 2026", "inicio de la edición actual"), ("100 %", "idea propia")],
             "video_title": "Recorrido por la app",
             "app_button": "Abrir la app",
+        },
+        "scouting": {
+            "kicker": "Proyecto · Máster en Big Data Deportivo",
+            "title": "Rayados Scouting Lab",
+            "lead": "Una herramienta de scouting y decisión deportiva, pensada como asistente para una dirección deportiva de Liga MX.",
+            "steps_title": "Qué hace",
+            "steps": [
+                ("Diagnóstico", "Mide la distancia del equipo frente al Top 4 de Liga MX por posición y prioriza qué reforzar."),
+                ("Scouting", "Filtra candidatos por perfil, pie y edad, los puntúa por encaje, riesgo y salario, y los compara con los titulares."),
+                ("Propuesta", "Arma un plan de ventas, cesiones y fichajes, recalcula el presupuesto y comprueba las reglas de Liga MX en tiempo real."),
+            ],
+            "image_main_alt": "Pantalla del Scouting Lab con la lista de candidatos para mediocentro defensivo",
+            "image_second_alt": "Pantalla del Scouting Lab con el análisis histórico de fichajes",
+            "facts_title": "En números",
+            "facts": [("~3.100", "jugadores analizados"), ("8", "ligas de América"), ("135", "fichajes históricos estudiados")],
+            "stack_title": "Con qué está hecho",
+            "stack": ["Python y Streamlit", "pandas", "Datos de Opta, FBref y Transfermarkt"],
+            "note": "Proyecto académico. No es una herramienta oficial del club.",
+            "repo_button": "Ver el código",
         },
         "contact": {
             "kicker": "Contacto",
@@ -244,6 +270,8 @@ TEXT = {
             "projects": ("Projects · Manu Sanroman", "Player development projects by Manu Sanroman."),
             "retos": ("Skills Challenge · Manu Sanroman",
                       "A program and app that keep players developing after practice ends."),
+            "scouting": ("Rayados Scouting Lab · Manu Sanroman",
+                         "A scouting and recruitment tool built as the final project for a Master's in Sports Big Data."),
             "contact": ("Contact · Manu Sanroman", "Get in touch about methodology, player development, or working together."),
         },
         "home": {
@@ -362,8 +390,10 @@ TEXT = {
             "title": "What I've built",
             "lead": "Tools and programs that grew out of real needs on the field.",
             "entries": [
-                {"key": "retos", "title": "Skills Challenge",
+                {"key": "retos", "title": "Skills Challenge", "image": "manu-toques.jpg",
                  "text": "A program and app that help players work on their technique at home, using skills from the game's legends."},
+                {"key": "scouting", "title": "Rayados Scouting Lab", "image": "scouting-lab-candidatos.jpg",
+                 "text": "A scouting and recruitment tool I built as my final project for the Master's in Sports Big Data."},
             ],
             "more": "See the project",
         },
@@ -393,6 +423,25 @@ TEXT = {
             "facts": [("~15", "players in the current round"), ("Sept 2026", "current round started"), ("100%", "my own idea")],
             "video_title": "App walkthrough",
             "app_button": "Open the app",
+        },
+        "scouting": {
+            "kicker": "Project · Master's in Sports Big Data",
+            "title": "Rayados Scouting Lab",
+            "lead": "A scouting and recruitment tool, designed to support a Liga MX sporting director's decisions.",
+            "steps_title": "What it does",
+            "steps": [
+                ("Diagnosis", "Measures the gap between the squad and Liga MX's top 4, position by position, and ranks what needs strengthening."),
+                ("Scouting", "Filters candidates by profile, preferred foot, and age, scores them on fit, risk, and salary, and compares them with current starters."),
+                ("Proposal", "Builds a plan of sales, loans, and signings, recalculates the budget, and checks Liga MX squad rules in real time."),
+            ],
+            "image_main_alt": "Scouting Lab screen listing candidates for defensive midfielder",
+            "image_second_alt": "Scouting Lab screen with the historical transfer analysis",
+            "facts_title": "By the numbers",
+            "facts": [("~3,100", "players analyzed"), ("8", "leagues across the Americas"), ("135", "past transfers studied")],
+            "stack_title": "Built with",
+            "stack": ["Python and Streamlit", "pandas", "Data from Opta, FBref, and Transfermarkt"],
+            "note": "Academic project. Not an official club tool.",
+            "repo_button": "View the code",
         },
         "contact": {
             "kicker": "Contact",
