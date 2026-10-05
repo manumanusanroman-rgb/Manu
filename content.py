@@ -121,33 +121,12 @@ TEXT = {
         "about": {
             "kicker": "Sobre mí",
             "title": "Manu Sanroman",
-            "lead": "He jugado y entrenado en México, Estados Unidos y España. Esto es lo que me llevé de cada sitio.",
-            "story": [
-                {"title": "Tres países", "paragraphs": [
-                    "Hasta los 14 años jugué en México. Destacaba en mi colegio y eso me llevó a las fuerzas básicas del Cruz Azul, donde jugué un año en la Sub-11.",
-                    "Después me mudé a The Woodlands, Texas, y jugué en Texas Rush, con torneos por todo Texas y Luisiana. Ahí conocí un fútbol más físico. Casi todos los veranos iba a España a los campus de Mareo, la escuela del Sporting de Gijón, donde dos veranos me eligieron mejor jugador. Soy del Real Madrid desde niño y el fútbol español siempre fue mi referencia.",
-                ]},
-                {"title": "Las tardes con el balón", "paragraphs": [
-                    "Tengo un hermano gemelo y siempre fui mejor futbolista que él. La diferencia estaba en las tardes: yo las pasaba solo con el balón, practicando tacones y sombreritos. Hoy, cuando juego, eso es lo que sale.",
-                    "De ahí viene el primer pilar de mi metodología: el trabajo personal, el que el jugador hace solo.",
-                ]},
-                {"title": "Sigo jugando", "paragraphs": [
-                    "No llegué a profesional, pero sigo jugando. Tengo 30 años y sigo mejorando, también con la pierna izquierda. Por eso trabajo por nivel y no por edad.",
-                    "Enseño cada gesto como lo aprendí: primero el movimiento sin balón, luego con balón, después contra una defensa \"de chocolate\", luego contra una oposición suave y al final contra una oposición real.",
-                ]},
-                {"title": "Entrenador desde los 15", "paragraphs": [
-                    "Empecé a entrenar a los 15 años, a un grupo de niñas que me pidió ayuda. Desde entonces he dado clases individuales casi sin parar.",
-                    "En Houston Dutch Lions estuve en la oficina y en el campo, con jugadores de 4 a 18 años. Trabajé con ideas del fútbol europeo: espacios reducidos, superar líneas con el pase, ocupar espacios y crearlos. Uno de mis equipos llegó a la fase nacional y cayó en penaltis.",
-                    "Propuse a los padres entrenamiento individual a menor precio y se notó en el equipo: con jugadores más técnicos, el equipo juega mejor. Algunos de mis alumnos acabaron estudiando para ser entrenadores.",
-                ]},
-                {"title": "Rayados", "paragraphs": [
-                    "Llegué a Monterrey buscando un puesto en gestión deportiva, que es lo que estudié. La vacante que había era de entrenador y la acepté. Llevo tres temporadas en las fuerzas básicas de Rayados con la categoría de entrada, la primera que llega al club.",
-                    "No quiero que ninguna familia sienta que a su hijo le faltaron herramientas para mejorar. Para eso creé los Retos de habilidad.",
-                ]},
+            "intro": [
+                "Entrenador de fútbol formativo. Jugué en México (Cruz Azul Sub-11), Estados Unidos (Texas Rush) y España (campus de Mareo, Sporting de Gijón), así que conozco tres formas distintas de entender el fútbol.",
+                "Entreno desde los 15 años. En Houston Dutch Lions entrené a jugadores de 4 a 18 años, aporté a la metodología del club (espacios reducidos y progresión con balón) y puse en marcha su programa de entrenamiento individual. Llevo tres temporadas en las fuerzas básicas de Rayados con la categoría Sub-10.",
+                "Creé los Retos de habilidad para que el jugador siga mejorando su técnica en casa. Tengo un máster en Big Data Deportivo por Real Madrid Graduate School y trabajo en español e inglés.",
+                "Busco ser metodólogo de una cantera: decidir qué se entrena, cuándo y por qué.",
             ],
-            "quote": "Mi objetivo: que el que trabaja tenga con qué superar al talentoso.",
-            "next_title": "Lo que busco",
-            "next_text": "Ser el metodólogo de una cantera: decidir qué se entrena, cuándo y por qué. Si tienes un proyecto así, hablemos.",
             "photo_alt": "Cuerpo técnico de Rayados en el Estadio BBVA",
             "experience_title": "Experiencia",
             "experience": [
@@ -334,33 +313,12 @@ TEXT = {
         "about": {
             "kicker": "About",
             "title": "Manu Sanroman",
-            "lead": "I've played and coached in Mexico, the United States and Spain. This is what I took from each place.",
-            "story": [
-                {"title": "Three countries", "paragraphs": [
-                    "Until I was 14 I played in Mexico. I stood out at school, which took me to the Cruz Azul academy, where I played a year in the U-11s.",
-                    "Then I moved to The Woodlands, Texas, and played for Texas Rush, with tournaments across Texas and Louisiana. That's where I met a more physical game. Almost every summer I went to Spain for the camps at Mareo, Sporting de Gijón's academy, where I was named best player in two summers. I've supported Real Madrid since I was a kid, and Spanish football was always my reference.",
-                ]},
-                {"title": "Afternoons with the ball", "paragraphs": [
-                    "I have a twin brother, and I was always the better footballer. The difference was the afternoons: I spent them alone with the ball, practising backheels and flicks. When I play today, that's what comes out.",
-                    "That's where the first pillar of my methodology comes from: personal work, the work players do on their own.",
-                ]},
-                {"title": "Still playing", "paragraphs": [
-                    "I never made it as a pro, but I still play. I'm 30 and still improving, my left foot included. That's why I work by level, not age.",
-                    "I teach every skill the way I learned it: first the movement without the ball, then with the ball, then against a passive defender, then against light opposition and finally against real opposition.",
-                ]},
-                {"title": "Coaching since 15", "paragraphs": [
-                    "I started coaching at 15, when a group of girls asked me for help. I've given individual sessions almost non-stop since then.",
-                    "At Houston Dutch Lions I worked in the office and on the pitch, with players aged 4 to 18. I worked with ideas from European football: small spaces, beating lines with the pass, occupying and creating space. One of my teams reached the national stage and went out on penalties.",
-                    "I offered parents individual training at a lower price, and it showed in the team: more technical players make a better team. Some of my students went on to study to become coaches.",
-                ]},
-                {"title": "Rayados", "paragraphs": [
-                    "I came to Monterrey looking for a role in sports management, which is what I studied. The opening was for a coach, and I took it. I'm in my third season in the Rayados academy with the entry age group, the first to join the club.",
-                    "I don't want any family to feel their child lacked the tools to improve. That's why I created the Skills Challenge.",
-                ]},
+            "intro": [
+                "Youth football coach. I played in Mexico (Cruz Azul U-11), the United States (Texas Rush) and Spain (Mareo camps, Sporting de Gijón), so I know three different ways of understanding football.",
+                "I've coached since I was 15. At Houston Dutch Lions I coached players aged 4 to 18, contributed to the club's methodology (small spaces and ball progression) and launched its individual training programme. I'm in my third season in the Rayados academy with the U-10 group.",
+                "I created the Skills Challenge so players keep improving their technique at home. I hold a Master's in Sports Big Data from Real Madrid Graduate School and work in Spanish and English.",
+                "I'm looking to become an academy's methodologist: deciding what is trained, when and why.",
             ],
-            "quote": "My goal: give the hard worker what they need to beat the talented.",
-            "next_title": "What I'm looking for",
-            "next_text": "To be an academy's methodologist: deciding what is trained, when and why. If you have a project like that, let's talk.",
             "photo_alt": "Rayados coaching staff at Estadio BBVA",
             "experience_title": "Experience",
             "experience": [

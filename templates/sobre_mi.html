@@ -5,36 +5,20 @@
 <section class="wrap page-head">
   <p class="kicker">{{ a.kicker }}</p>
   <h1 class="display">{{ a.title }}</h1>
-  <p class="lead">{{ a.lead }}</p>
-  <div class="hero-buttons">
-    {% if cv_url %}<a class="btn btn-dark" href="{{ cv_url }}" download>{{ a.cv_button }}</a>{% endif %}
-    <a class="btn btn-line" href="{{ urls.contact }}">{{ t.cta_button }}</a>
-  </div>
 </section>
 
 <section class="wrap story-grid">
   <div class="story">
-    {% for chapter in a.story %}
-    <section class="chapter">
-      <h2 class="display">{{ chapter.title }}</h2>
-      {% for paragraph in chapter.paragraphs %}<p>{{ paragraph }}</p>{% endfor %}
-    </section>
-    {% if loop.index == 3 %}
-    <blockquote class="quote display">{{ a.quote }}</blockquote>
-    {% endif %}
-    {% endfor %}
+    <div class="chapter">
+      {% for paragraph in a.intro %}<p>{{ paragraph }}</p>{% endfor %}
+    </div>
+    <div class="hero-buttons">
+      {% if cv_url %}<a class="btn btn-dark" href="{{ cv_url }}" download>{{ a.cv_button }}</a>{% endif %}
+      <a class="btn btn-line" href="{{ urls.contact }}">{{ t.cta_button }}</a>
+    </div>
   </div>
   <div class="story-photos">
-    <img src="/static/img/manu-toques.jpg" alt="{{ t.home.project_alt }}" width="768" height="1024" loading="lazy">
     <img src="/static/img/staff-estadio.jpg" alt="{{ a.photo_alt }}" width="1519" height="1204" loading="lazy">
-  </div>
-</section>
-
-<section class="wrap" style="padding-bottom: 80px">
-  <div class="callout">
-    <h3>{{ a.next_title }}</h3>
-    <p>{{ a.next_text }}</p>
-    <div><a class="btn btn-dark" href="{{ urls.contact }}">{{ t.cta_button }}</a></div>
   </div>
 </section>
 
